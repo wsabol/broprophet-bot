@@ -5,6 +5,7 @@ import archiveText from "../../data/archive.txt";
 import bandGroupText from "../../data/band-group.txt";
 import clickholeText from "../../data/clickhole.txt";
 import facebookText from "../../data/facebook.txt";
+import goldAbsurdistText from "../../data/gold-absurdist.txt";
 
 /**
  * Split a corpus file into individual sayings. We treat each non-empty line
@@ -26,12 +27,25 @@ const SOURCES = {
   bandGroup: splitLines(bandGroupText),
   clickhole: splitLines(clickholeText),
   facebook: splitLines(facebookText),
+  gold: splitLines(goldAbsurdistText),
 };
 
 /** All known sayings, deduplicated. */
 export const ALL_QUOTES = Array.from(
-  new Set([...SOURCES.archive, ...SOURCES.bandGroup, ...SOURCES.clickhole, ...SOURCES.facebook]),
+  new Set([
+    ...SOURCES.gold,
+    ...SOURCES.archive,
+    ...SOURCES.bandGroup,
+    ...SOURCES.clickhole,
+    ...SOURCES.facebook,
+  ]),
 );
+
+/**
+ * Hand-curated absurdist lines — the "non-guru" canon. Used as the bulk of
+ * the few-shot pool to keep the model from drifting into mystic/sage register.
+ */
+export const GOLD_QUOTES = SOURCES.gold.slice();
 
 /** Pick a uniformly random element from an array. */
 export function sample(arr) {
@@ -76,12 +90,91 @@ export function randomQuote(maxLength = 240) {
  * Pick `n` quotes to use as few-shot examples for the model. Filters to
  * tweet-sized examples so the model learns the right cadence.
  *
+ * Bias is roughly 80% from the hand-curated absurdist `gold` corpus and 20%
+ * from the broader canon. This stops the model from over-anchoring on the
+ * mystical-leaning lines in the original archive that pull it toward
+ * guru-speak.
+ *
  * @param {number} [n]
  * @param {number} [maxLen]
  */
 export function fewShotExamples(n = 12, maxLen = 240) {
-  const usable = ALL_QUOTES.filter((q) => q.length <= maxLen && q.length >= 30).map((q) =>
-    q.replace(/^\*+|\*+$/g, "").trim(),
-  );
-  return sampleMany(usable, n);
+  const clean = (q) => q.replace(/^\*+|\*+$/g, "").trim();
+  const fits = (q) => q.length <= maxLen && q.length >= 20;
+
+  const goldPool = GOLD_QUOTES.map(clean).filter(fits);
+  const restPool = ALL_QUOTES.filter((q) => !GOLD_QUOTES.includes(q))
+    .map(clean)
+    .filter(fits);
+
+  const nGold = Math.min(goldPool.length, Math.max(1, Math.round(n * 0.8)));
+  const nRest = Math.max(0, n - nGold);
+
+  const picks = [...sampleMany(goldPool, nGold), ...sampleMany(restPool, nRest)];
+  for (let i = picks.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [picks[i], picks[j]] = [picks[j], picks[i]];
+  }
+  return picks;
+}
+
+/**
+ * A curated bank of concrete pop-culture tokens we forcibly inject into one
+ * generation in two, to keep the model's vocabulary planted in the right
+ * universe (Lebowski / TPB / Funkadelic / Steely Dan / college-bro). When the
+ * model is told "your output MUST contain X", its whole register shifts to
+ * accommodate X — which is the lever we want.
+ */
+export const FORCED_TOKEN_BANK = [
+  // Lebowski
+  "Donny",
+  "Walter",
+  "Maude",
+  "the rug",
+  "marmot",
+  "White Russian",
+  "Caucasian",
+  "calmer than you are",
+  "the Dude abides",
+  "new shit has come to light",
+  "in the parlance of our times",
+  "nihilists",
+  // Trailer Park Boys
+  "Ricky",
+  "Bubbles",
+  "Mr. Lahey",
+  "kitties",
+  "shit-winds",
+  "the liquor",
+  "decent",
+  "Sunnyvale",
+  "worst-case Ontario",
+  "supply and command",
+  "get two birds stoned at once",
+  "Conky",
+  // Funkadelic / canon
+  "Mothership",
+  "Trumpet Jelly",
+  "Dr. Funkenstein",
+  "skerlack",
+  "larbo-larbo",
+  "give up the funk",
+  // Steely Dan
+  "Kid Charlemagne",
+  "Dr. Wu",
+  "any major Dude",
+  "Rikki",
+  "Aja",
+  // College bro
+  "shotgun",
+  "Dos Equis",
+  "hot-and-ready",
+  "Tuesday",
+  "hard six",
+];
+
+/** Pick one random forced-token, or `null` to leave it unforced. */
+export function pickForcedToken({ probability = 0.5 } = {}) {
+  if (Math.random() > probability) return null;
+  return sample(FORCED_TOKEN_BANK);
 }

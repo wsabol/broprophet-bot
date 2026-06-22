@@ -11,8 +11,8 @@
 //   POST /check-mentions — poll mentions immediately
 
 import { chat } from "./openai.js";
-import { newSayingMessages, replyMessages } from "./prompts.js";
-import { randomQuote } from "./corpus.js";
+import { checkVoice, newSayingMessages, replyMessages } from "./prompts.js";
+import { pickForcedToken, randomQuote } from "./corpus.js";
 import { parseAlwaysHashtags, pickHashtags } from "./hashtags.js";
 import {
   getAuthedUser,
@@ -121,11 +121,59 @@ function composeReply(env, replyBody, recipientHandle) {
 // -------------------------------------------------------------------------
 
 /**
+ * Call the model with the given prompt-builder and run a "voice quality"
+ * loop: if the output contains a banned guru phrase, retry up to `maxRetries`
+ * times with an explicit "rewrite without X" coaching line. Returns the best
+ * draft we got, plus a flag indicating whether it passed the voice check.
+ *
+ * The forced-token (if any) is injected on the first attempt only — on
+ * retries the model is already constrained enough by the rewrite coaching.
+ *
+ * @param {any} env
+ * @param {object} args
+ * @param {(opts:{forcedToken?:string,retryHint?:string})=>{role:string,content:string}[]} args.buildMessages
+ * @param {number} args.maxRetries
+ * @param {number} [args.forceTokenProbability]
+ * @param {number} [args.temperature]
+ */
+async function generateInVoice(env, { buildMessages, maxRetries, forceTokenProbability = 0.5, temperature }) {
+  const forcedToken = pickForcedToken({ probability: forceTokenProbability });
+
+  let lastDraft = "";
+  let lastFail = null;
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    const retryHint = lastFail
+      ? `Your previous attempt contained the banned phrase "${lastFail}". Rewrite from scratch without it. Stay in the absurdist Lebowski/TPB/Funkadelic register — not the sage/guru register.`
+      : undefined;
+    const messages = buildMessages({
+      forcedToken: attempt === 0 ? forcedToken || undefined : undefined,
+      retryHint,
+    });
+    const raw = await chat(env, {
+      messages,
+      temperature: temperature ?? 0.9,
+      maxTokens: 220,
+    });
+    const cleaned = cleanGenerated(raw);
+    lastDraft = cleaned;
+    const verdict = checkVoice(cleaned);
+    if (verdict.ok) {
+      return { text: cleaned, attempts: attempt + 1, forcedToken, passed: true };
+    }
+    lastFail = verdict.match;
+    console.warn(
+      `voice check failed on attempt ${attempt + 1}: matched "${verdict.match}". Retrying…`,
+    );
+  }
+  return { text: lastDraft, attempts: maxRetries + 1, forcedToken, passed: false };
+}
+
+/**
  * Generate the body of a daily post — either pulled from the corpus or freshly
  * generated, weighted by NEW_SAYING_PROBABILITY.
  *
  * @param {any} env
- * @returns {Promise<{ kind: "corpus" | "model", text: string }>}
+ * @returns {Promise<{ kind: "corpus" | "model", text: string, meta?: object }>}
  */
 export async function buildDailySaying(env) {
   const limit = maxTweetLength(env);
@@ -137,12 +185,22 @@ export async function buildDailySaying(env) {
 
   if (useModel) {
     try {
-      const text = await chat(env, {
-        messages: newSayingMessages({ maxLength: sayingBudget }),
-        temperature: 1.05,
-        maxTokens: 220,
+      const result = await generateInVoice(env, {
+        buildMessages: ({ forcedToken, retryHint }) =>
+          newSayingMessages({ maxLength: sayingBudget, forcedToken, retryHint }),
+        maxRetries: 2,
+        forceTokenProbability: 0.6,
+        temperature: 0.95,
       });
-      return { kind: "model", text: cleanGenerated(text) };
+      return {
+        kind: "model",
+        text: result.text,
+        meta: {
+          attempts: result.attempts,
+          forcedToken: result.forcedToken,
+          voicePassed: result.passed,
+        },
+      };
     } catch (err) {
       console.warn("Model generation failed, falling back to corpus:", err);
     }
@@ -277,19 +335,27 @@ export async function processMentions(env, opts = {}) {
     }
 
     const author = users[t.author_id];
-    const handle = author?.username || "friend";
+    const handle = author?.username || "dude";
+    const replyMaxLen = Math.max(60, maxTweetLength(env) - (handle.length + 2) - 24);
 
     let replyBody;
     try {
-      replyBody = await chat(env, {
-        messages: replyMessages({
-          tweetText: t.text || "",
-          tweetAuthorHandle: handle,
-          maxLength: Math.max(60, maxTweetLength(env) - (handle.length + 2) - 24),
-        }),
-        temperature: 1.0,
-        maxTokens: 200,
+      const result = await generateInVoice(env, {
+        buildMessages: ({ forcedToken, retryHint }) =>
+          replyMessages({
+            tweetText: t.text || "",
+            tweetAuthorHandle: handle,
+            maxLength: replyMaxLen,
+            forcedToken,
+            retryHint,
+          }),
+        maxRetries: 2,
+        // Replies should track the tweet they're answering, so force a token
+        // less often than for stand-alone daily posts.
+        forceTokenProbability: 0.35,
+        temperature: 0.9,
       });
+      replyBody = result.text;
     } catch (err) {
       console.warn(`reply generation failed for ${t.id}:`, err);
       errors.push({ id: t.id, error: String(err) });
@@ -393,9 +459,9 @@ export default {
 
     if (path === "/preview") {
       // Generate a sample without posting — safe to leave open.
-      const { kind, text } = await buildDailySaying(env);
+      const { kind, text, meta } = await buildDailySaying(env);
       const tweet = composeTweet(env, text);
-      return jsonResponse({ kind, raw: text, tweet, length: tweet.length });
+      return jsonResponse({ kind, raw: text, tweet, length: tweet.length, meta });
     }
 
     if (path === "/post-now") {
