@@ -12,9 +12,9 @@ fallthrough = true
 # Cron triggers:
 #   - daily post at 16:20 UTC (= 4:20 PM UTC, 12:20 PM ET, 9:20 AM PT — and yes,
 #     the 4:20 is on purpose; The BroProphet would have it no other way)
-#   - mention polling every 15 minutes
+#   - mention polling every 5 minutes
 [triggers]
-crons = ["20 16 * * *", "*/15 * * * *"]
+crons = ["20 16 * * *", "*/5 * * * *"]
 
 # KV namespace for state (last mention id processed, set of already-replied tweet ids).
 # Create with: npm run kv:create   then paste the returned `id` below.
