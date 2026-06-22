@@ -104,14 +104,23 @@ export async function getAuthedUser(env) {
 }
 
 /**
- * Fetch recent mentions of the authed user, optionally only those after `sinceId`.
+ * Fetch recent mentions of the authed user.
+ *
+ * Both `sinceId` and `startTime` are server-side filters — when both are set
+ * the API returns the intersection (i.e. mentions that satisfy both bounds),
+ * which is exactly what we want to prevent ever fetching ancient history.
+ *
  * Returns the parsed v2 envelope: { data, includes, meta }.
+ *
  * @param {any} env
  * @param {string} userId
- * @param {string} [sinceId]
- * @param {number} [maxResults]
+ * @param {object} [opts]
+ * @param {string} [opts.sinceId] Only return mentions with id strictly greater than this.
+ * @param {string} [opts.startTime] ISO 8601 timestamp; only return mentions newer than this.
+ * @param {number} [opts.maxResults] 5..100, defaults 20.
  */
-export async function getMentions(env, userId, sinceId, maxResults = 20) {
+export async function getMentions(env, userId, opts = {}) {
+  const { sinceId, startTime, maxResults = 20 } = opts;
   const query = {
     max_results: String(Math.max(5, Math.min(100, maxResults))),
     "tweet.fields": "author_id,conversation_id,created_at,in_reply_to_user_id,referenced_tweets",
@@ -119,6 +128,7 @@ export async function getMentions(env, userId, sinceId, maxResults = 20) {
     "user.fields": "username,name",
   };
   if (sinceId) query.since_id = sinceId;
+  if (startTime) query.start_time = startTime;
   return signedRequest(env, {
     method: "GET",
     path: `/2/users/${userId}/mentions`,

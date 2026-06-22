@@ -175,11 +175,29 @@ export async function postDailySaying(env) {
 }
 
 /**
+ * Maximum age (in hours) of a mention we'll still reply to. Anything older
+ * than this is treated as ancient history regardless of the cursor state.
+ * @param {any} env
+ */
+function maxMentionAgeHours(env) {
+  const n = Number(env.MAX_MENTION_AGE_HOURS ?? "24");
+  return Number.isFinite(n) && n > 0 ? n : 24;
+}
+
+/**
  * Poll mentions and reply to anything new. Limits itself to 5 replies per run
  * to avoid burning rate limit budget when there's a backlog.
  *
+ * Safety guarantees:
+ *   - First-ever run (no `last_mention_id` in KV) seeds the cursor to the
+ *     newest current mention and replies to NOTHING. This stops the bot from
+ *     spamming years of historical @-mentions when it first comes online.
+ *   - Every subsequent run additionally enforces an age cutoff
+ *     (`MAX_MENTION_AGE_HOURS`, default 24) both at the API layer and
+ *     client-side, so a wiped KV or long outage can never re-trigger backlog.
+ *
  * @param {any} env
- * @param {{maxReplies?:number}} [opts]
+ * @param {{maxReplies?:number, allowBootstrapReplies?:boolean}} [opts]
  */
 export async function processMentions(env, opts = {}) {
   const maxReplies = opts.maxReplies ?? 5;
@@ -187,31 +205,76 @@ export async function processMentions(env, opts = {}) {
   if (!me?.id) throw new Error("Could not resolve authed user");
 
   const sinceId = await getLastMentionId(env);
-  const envelope = await getMentions(env, me.id, sinceId || undefined, 20);
+  const isBootstrap = !sinceId && !opts.allowBootstrapReplies;
+
+  const ageHours = maxMentionAgeHours(env);
+  const cutoffMs = Date.now() - ageHours * 60 * 60 * 1000;
+  const startTime = new Date(cutoffMs).toISOString();
+
+  const envelope = await getMentions(env, me.id, {
+    sinceId: sinceId || undefined,
+    startTime,
+    maxResults: 20,
+  });
   const tweets = envelope?.data || [];
   const users = (envelope?.includes?.users || []).reduce((acc, u) => {
     acc[u.id] = u;
     return acc;
   }, /** @type {Record<string, any>} */ ({}));
 
-  if (!tweets.length) {
-    return { processed: 0, replied: 0, newest: null };
-  }
-
-  // Sort ascending by id so the resulting `since_id` is the highest at the end.
+  // Sort ascending by id so the resulting cursor is the highest at the end.
   const sortedAsc = tweets.slice().sort((a, b) => (BigInt(a.id) < BigInt(b.id) ? -1 : 1));
   let highest = sinceId || "0";
-  let replied = 0;
-  const errors = [];
-
   for (const t of sortedAsc) {
     if (BigInt(t.id) > BigInt(highest)) highest = t.id;
+  }
 
+  // First-run bootstrap: seed the cursor and bail. We deliberately don't reply
+  // to anything on this path even if the mentions fall inside the age window —
+  // the user explicitly turns on replies by waiting for the *next* tick.
+  if (isBootstrap) {
+    if (highest !== "0") {
+      await setLastMentionId(env, highest);
+    }
+    return {
+      processed: tweets.length,
+      replied: 0,
+      newest: highest === "0" ? null : highest,
+      bootstrap: true,
+      reason: "first_run_seed_cursor",
+    };
+  }
+
+  if (!tweets.length) {
+    return { processed: 0, replied: 0, newest: sinceId || null };
+  }
+
+  let replied = 0;
+  const errors = [];
+  const skipped = { tooOld: 0, self: 0, alreadyReplied: 0 };
+
+  for (const t of sortedAsc) {
     // Never reply to ourselves, even if we somehow tag ourselves.
-    if (t.author_id === me.id) continue;
+    if (t.author_id === me.id) {
+      skipped.self++;
+      continue;
+    }
+
+    // Defense in depth — server already filtered by start_time, but if X ever
+    // misbehaves or the field is missing, this guarantees the age contract.
+    if (t.created_at) {
+      const ts = Date.parse(t.created_at);
+      if (Number.isFinite(ts) && ts < cutoffMs) {
+        skipped.tooOld++;
+        continue;
+      }
+    }
 
     if (replied >= maxReplies) continue;
-    if (await hasReplied(env, t.id)) continue;
+    if (await hasReplied(env, t.id)) {
+      skipped.alreadyReplied++;
+      continue;
+    }
 
     const author = users[t.author_id];
     const handle = author?.username || "friend";
@@ -251,13 +314,13 @@ export async function processMentions(env, opts = {}) {
     }
   }
 
-  // Advance the cursor so we don't re-fetch these mentions next run, even if
-  // some replies failed (otherwise a single bad tweet jams the queue forever).
+  // Advance the cursor even when individual replies failed, so a single bad
+  // tweet can't jam the queue forever.
   if (highest !== (sinceId || "0")) {
     await setLastMentionId(env, highest);
   }
 
-  return { processed: tweets.length, replied, newest: highest, errors };
+  return { processed: tweets.length, replied, newest: highest, skipped, errors };
 }
 
 // -------------------------------------------------------------------------
@@ -352,6 +415,40 @@ export default {
       try {
         const result = await processMentions(env);
         return jsonResponse(result);
+      } catch (err) {
+        return jsonResponse({ error: String(err) }, 500);
+      }
+    }
+
+    // Manually advance the mention cursor without replying. Useful when the
+    // bot has been spamming backlog and you want to fast-forward past it.
+    // Body (JSON, optional): { "to": "<tweet_id>" }. If omitted, seeds to the
+    // newest current mention.
+    if (path === "/skip-mentions") {
+      if (request.method !== "POST") return jsonResponse({ error: "use POST" }, 405);
+      if (!isAuthorized(request, env)) return jsonResponse({ error: "unauthorized" }, 401);
+      try {
+        let target = null;
+        try {
+          const body = await request.json();
+          if (body && typeof body.to === "string") target = body.to;
+        } catch {
+          // empty body is fine
+        }
+        if (!target) {
+          const me = await getAuthedUser(env);
+          if (!me?.id) throw new Error("Could not resolve authed user");
+          const envelope = await getMentions(env, me.id, { maxResults: 5 });
+          const tweets = envelope?.data || [];
+          if (!tweets.length) {
+            return jsonResponse({ ok: true, newest: null, note: "no mentions found" });
+          }
+          target = tweets
+            .map((t) => t.id)
+            .reduce((max, id) => (BigInt(id) > BigInt(max) ? id : max), "0");
+        }
+        await setLastMentionId(env, target);
+        return jsonResponse({ ok: true, newest: target });
       } catch (err) {
         return jsonResponse({ error: String(err) }, 500);
       }
