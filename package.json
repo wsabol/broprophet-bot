@@ -1,0 +1,23 @@
+{
+  "name": "broprophet-bot",
+  "version": "0.1.0",
+  "description": "An X/Twitter bot channeling The BroProphet: existential Dude vibes, college party bravado, and Parliament/Funkadelic psychedelia.",
+  "private": true,
+  "type": "module",
+  "main": "src/broprophet/index.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail",
+    "post:now": "wrangler dev --test-scheduled --remote=false",
+    "kv:create": "wrangler kv namespace create BROPROPHET_KV",
+    "secret:openai": "wrangler secret put OPENAI_API_KEY",
+    "secret:x-key": "wrangler secret put X_API_KEY",
+    "secret:x-secret": "wrangler secret put X_API_SECRET",
+    "secret:x-token": "wrangler secret put X_ACCESS_TOKEN",
+    "secret:x-token-secret": "wrangler secret put X_ACCESS_TOKEN_SECRET"
+  },
+  "devDependencies": {
+    "wrangler": "^3.90.0"
+  }
+}

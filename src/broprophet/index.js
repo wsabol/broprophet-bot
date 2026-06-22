@@ -1,0 +1,362 @@
+// BroProphet bot — Cloudflare Worker entry point.
+//
+// Cron triggers (configured in wrangler.toml):
+//   - `DAILY_POST_CRON` (default 20 17 * * *) fires once a day → post a saying.
+//   - Any other scheduled run polls X mentions and replies to new ones.
+//
+// HTTP routes (mostly for manual ops; protect with `OPS_TOKEN` if set):
+//   GET  /            — health check + handle/last-mention info
+//   GET  /preview     — generate a daily-post candidate WITHOUT posting it
+//   POST /post-now    — post a daily saying immediately
+//   POST /check-mentions — poll mentions immediately
+
+import { chat } from "./openai.js";
+import { newSayingMessages, replyMessages } from "./prompts.js";
+import { randomQuote } from "./corpus.js";
+import { parseAlwaysHashtags, pickHashtags } from "./hashtags.js";
+import {
+  getAuthedUser,
+  getMentions,
+  postTweet,
+} from "./x.js";
+import {
+  getLastDailyPostDate,
+  getLastMentionId,
+  hasReplied,
+  markReplied,
+  recordPost,
+  setLastDailyPostDate,
+  setLastMentionId,
+} from "./storage.js";
+
+// -------------------------------------------------------------------------
+// Tweet composition helpers
+// -------------------------------------------------------------------------
+
+/**
+ * Strip wrapping quotes/backticks the model sometimes adds, plus stray
+ * surrounding asterisks from the corpus.
+ */
+function cleanGenerated(text) {
+  let s = String(text || "").trim();
+  s = s.replace(/^[\*\u201c\u201d"'`]+|[\*\u201c\u201d"'`]+$/g, "").trim();
+  // Collapse runs of whitespace introduced by the model.
+  s = s.replace(/\s+\n/g, "\n").replace(/[ \t]{2,}/g, " ");
+  return s;
+}
+
+/** Hard-truncate to a length, trying to break on a word boundary. */
+function clampToLength(text, max) {
+  if (text.length <= max) return text;
+  const cut = text.slice(0, max);
+  const space = cut.lastIndexOf(" ");
+  if (space > max * 0.7) return cut.slice(0, space).replace(/[.,;:!\-]$/, "") + "…";
+  return cut.replace(/[.,;:!\-]$/, "") + "…";
+}
+
+/** @param {any} env */
+function maxTweetLength(env) {
+  const n = Number(env.MAX_TWEET_LENGTH || 280);
+  return Number.isFinite(n) && n > 0 ? n : 280;
+}
+
+/**
+ * Compose final tweet text = saying + space + hashtags.
+ *
+ * Strategy: reserve up to 60 chars of budget for hashtags, but only if the
+ * saying is short enough to leave room. Otherwise we shrink the hashtag budget
+ * and (worst case) drop hashtags entirely so the saying always gets through.
+ *
+ * @param {any} env
+ * @param {string} sayingRaw
+ * @returns {string}
+ */
+function composeTweet(env, sayingRaw) {
+  const limit = maxTweetLength(env);
+  const saying = clampToLength(cleanGenerated(sayingRaw), limit);
+
+  const remaining = limit - saying.length;
+  // We always need at least " #x" (3 chars) for a single hashtag to be worth it.
+  if (remaining < 6) return saying.slice(0, limit);
+
+  const budget = Math.min(remaining, 80); // cap so we don't drown in tags
+  const tags = pickHashtags({
+    budget,
+    alwaysInclude: parseAlwaysHashtags(env.ALWAYS_HASHTAGS),
+  });
+  if (!tags.length) return saying;
+
+  const joined = tags.join(" ");
+  const out = `${saying} ${joined}`;
+  if (out.length <= limit) return out;
+  // Should not happen given the budget math above, but be safe.
+  return saying.slice(0, limit);
+}
+
+/**
+ * Compose a reply: "@handle <reply>" optionally followed by 0-2 hashtags.
+ *
+ * Replies are shorter — 1 hashtag max — to keep the bot from looking spammy
+ * in conversation threads.
+ */
+function composeReply(env, replyBody, recipientHandle) {
+  const limit = maxTweetLength(env);
+  const prefix = `@${recipientHandle} `;
+  const bodyMax = Math.max(20, limit - prefix.length);
+  const body = clampToLength(cleanGenerated(replyBody), bodyMax);
+  let out = `${prefix}${body}`;
+  const remaining = limit - out.length;
+  if (remaining >= 12) {
+    const tags = pickHashtags({
+      budget: Math.min(remaining, 30),
+      alwaysInclude: [],
+    }).slice(0, 1);
+    if (tags.length) out = `${out} ${tags[0]}`;
+  }
+  return out.slice(0, limit);
+}
+
+// -------------------------------------------------------------------------
+// Core actions
+// -------------------------------------------------------------------------
+
+/**
+ * Generate the body of a daily post — either pulled from the corpus or freshly
+ * generated, weighted by NEW_SAYING_PROBABILITY.
+ *
+ * @param {any} env
+ * @returns {Promise<{ kind: "corpus" | "model", text: string }>}
+ */
+export async function buildDailySaying(env) {
+  const limit = maxTweetLength(env);
+  const reserveForHashtags = 50;
+  const sayingBudget = Math.max(60, limit - reserveForHashtags);
+
+  const newProb = Number(env.NEW_SAYING_PROBABILITY ?? "0.5");
+  const useModel = Math.random() < (Number.isFinite(newProb) ? newProb : 0.5);
+
+  if (useModel) {
+    try {
+      const text = await chat(env, {
+        messages: newSayingMessages({ maxLength: sayingBudget }),
+        temperature: 1.05,
+        maxTokens: 220,
+      });
+      return { kind: "model", text: cleanGenerated(text) };
+    } catch (err) {
+      console.warn("Model generation failed, falling back to corpus:", err);
+    }
+  }
+  return { kind: "corpus", text: randomQuote(sayingBudget) };
+}
+
+/**
+ * Post the daily saying. Idempotent against re-runs on the same UTC date
+ * (so a misfiring cron won't double-post).
+ *
+ * @param {any} env
+ * @returns {Promise<{posted:boolean,reason?:string,tweetId?:string,text?:string,kind?:string}>}
+ */
+export async function postDailySaying(env) {
+  const today = new Date().toISOString().slice(0, 10);
+  const last = await getLastDailyPostDate(env).catch(() => null);
+  if (last === today) {
+    return { posted: false, reason: `already_posted:${today}` };
+  }
+
+  const { kind, text: sayingBody } = await buildDailySaying(env);
+  const tweetText = composeTweet(env, sayingBody);
+
+  const resp = await postTweet(env, tweetText);
+  const id = resp?.data?.id;
+  await setLastDailyPostDate(env, today).catch(() => {});
+  await recordPost(env, { id: id || "unknown", text: tweetText, kind: "daily" });
+  return { posted: true, tweetId: id, text: tweetText, kind };
+}
+
+/**
+ * Poll mentions and reply to anything new. Limits itself to 5 replies per run
+ * to avoid burning rate limit budget when there's a backlog.
+ *
+ * @param {any} env
+ * @param {{maxReplies?:number}} [opts]
+ */
+export async function processMentions(env, opts = {}) {
+  const maxReplies = opts.maxReplies ?? 5;
+  const me = await getAuthedUser(env);
+  if (!me?.id) throw new Error("Could not resolve authed user");
+
+  const sinceId = await getLastMentionId(env);
+  const envelope = await getMentions(env, me.id, sinceId || undefined, 20);
+  const tweets = envelope?.data || [];
+  const users = (envelope?.includes?.users || []).reduce((acc, u) => {
+    acc[u.id] = u;
+    return acc;
+  }, /** @type {Record<string, any>} */ ({}));
+
+  if (!tweets.length) {
+    return { processed: 0, replied: 0, newest: null };
+  }
+
+  // Sort ascending by id so the resulting `since_id` is the highest at the end.
+  const sortedAsc = tweets.slice().sort((a, b) => (BigInt(a.id) < BigInt(b.id) ? -1 : 1));
+  let highest = sinceId || "0";
+  let replied = 0;
+  const errors = [];
+
+  for (const t of sortedAsc) {
+    if (BigInt(t.id) > BigInt(highest)) highest = t.id;
+
+    // Never reply to ourselves, even if we somehow tag ourselves.
+    if (t.author_id === me.id) continue;
+
+    if (replied >= maxReplies) continue;
+    if (await hasReplied(env, t.id)) continue;
+
+    const author = users[t.author_id];
+    const handle = author?.username || "friend";
+
+    let replyBody;
+    try {
+      replyBody = await chat(env, {
+        messages: replyMessages({
+          tweetText: t.text || "",
+          tweetAuthorHandle: handle,
+          maxLength: Math.max(60, maxTweetLength(env) - (handle.length + 2) - 24),
+        }),
+        temperature: 1.0,
+        maxTokens: 200,
+      });
+    } catch (err) {
+      console.warn(`reply generation failed for ${t.id}:`, err);
+      errors.push({ id: t.id, error: String(err) });
+      continue;
+    }
+
+    const replyText = composeReply(env, replyBody, handle);
+
+    try {
+      const resp = await postTweet(env, replyText, t.id);
+      await markReplied(env, t.id);
+      await recordPost(env, {
+        id: resp?.data?.id || "unknown",
+        text: replyText,
+        kind: "reply",
+        inReplyTo: t.id,
+      });
+      replied++;
+    } catch (err) {
+      console.warn(`reply post failed for ${t.id}:`, err);
+      errors.push({ id: t.id, error: String(err) });
+    }
+  }
+
+  // Advance the cursor so we don't re-fetch these mentions next run, even if
+  // some replies failed (otherwise a single bad tweet jams the queue forever).
+  if (highest !== (sinceId || "0")) {
+    await setLastMentionId(env, highest);
+  }
+
+  return { processed: tweets.length, replied, newest: highest, errors };
+}
+
+// -------------------------------------------------------------------------
+// HTTP / scheduled entrypoints
+// -------------------------------------------------------------------------
+
+function jsonResponse(obj, status = 200) {
+  return new Response(JSON.stringify(obj, null, 2), {
+    status,
+    headers: { "Content-Type": "application/json; charset=utf-8" },
+  });
+}
+
+/** Optional bearer-token gate for ops routes. */
+function isAuthorized(request, env) {
+  if (!env.OPS_TOKEN) return true; // no token configured = open (dev convenience)
+  const got = request.headers.get("Authorization") || "";
+  return got === `Bearer ${env.OPS_TOKEN}`;
+}
+
+export default {
+  /**
+   * Cron handler. We dispatch based on which cron expression triggered this
+   * run so the same Worker can both daily-post and poll mentions.
+   *
+   * @param {ScheduledEvent} event
+   * @param {any} env
+   * @param {ExecutionContext} ctx
+   */
+  async scheduled(event, env, ctx) {
+    const cron = event.cron;
+    const dailyCron = env.DAILY_POST_CRON || "20 16 * * *";
+
+    if (cron === dailyCron) {
+      ctx.waitUntil(
+        postDailySaying(env)
+          .then((r) => console.log("daily post:", JSON.stringify(r)))
+          .catch((err) => console.error("daily post failed:", err)),
+      );
+    } else {
+      ctx.waitUntil(
+        processMentions(env)
+          .then((r) => console.log("mentions:", JSON.stringify(r)))
+          .catch((err) => console.error("mentions failed:", err)),
+      );
+    }
+  },
+
+  /**
+   * @param {Request} request
+   * @param {any} env
+   * @param {ExecutionContext} ctx
+   */
+  async fetch(request, env, ctx) {
+    const url = new URL(request.url);
+    const path = url.pathname.replace(/\/+$/, "") || "/";
+
+    if (path === "/") {
+      const lastMention = await getLastMentionId(env).catch(() => null);
+      const lastDaily = await getLastDailyPostDate(env).catch(() => null);
+      return jsonResponse({
+        ok: true,
+        bot: "broprophet",
+        handle: env.X_HANDLE || null,
+        model: env.OPENAI_MODEL || "gpt-4o-mini",
+        last_mention_id: lastMention,
+        last_daily_post_date: lastDaily,
+      });
+    }
+
+    if (path === "/preview") {
+      // Generate a sample without posting — safe to leave open.
+      const { kind, text } = await buildDailySaying(env);
+      const tweet = composeTweet(env, text);
+      return jsonResponse({ kind, raw: text, tweet, length: tweet.length });
+    }
+
+    if (path === "/post-now") {
+      if (request.method !== "POST") return jsonResponse({ error: "use POST" }, 405);
+      if (!isAuthorized(request, env)) return jsonResponse({ error: "unauthorized" }, 401);
+      try {
+        const result = await postDailySaying(env);
+        return jsonResponse(result);
+      } catch (err) {
+        return jsonResponse({ error: String(err) }, 500);
+      }
+    }
+
+    if (path === "/check-mentions") {
+      if (request.method !== "POST") return jsonResponse({ error: "use POST" }, 405);
+      if (!isAuthorized(request, env)) return jsonResponse({ error: "unauthorized" }, 401);
+      try {
+        const result = await processMentions(env);
+        return jsonResponse(result);
+      } catch (err) {
+        return jsonResponse({ error: String(err) }, 500);
+      }
+    }
+
+    return jsonResponse({ error: "not found", path }, 404);
+  },
+};

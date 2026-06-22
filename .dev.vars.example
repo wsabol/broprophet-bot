@@ -1,0 +1,6 @@
+# Copy to .dev.vars for `wrangler dev`. In production these go via `wrangler secret put ...`.
+OPENAI_API_KEY="sk-..."
+X_API_KEY="..."
+X_API_SECRET="..."
+X_ACCESS_TOKEN="..."
+X_ACCESS_TOKEN_SECRET="..."

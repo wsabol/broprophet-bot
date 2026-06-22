@@ -1,0 +1,40 @@
+name = "broprophet-bot"
+main = "src/broprophet/index.js"
+compatibility_date = "2025-05-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Allow importing the data/*.txt corpus files as text strings.
+[[rules]]
+type = "Text"
+globs = ["**/*.txt"]
+fallthrough = true
+
+# Cron triggers:
+#   - daily post at 16:20 UTC (= 4:20 PM UTC, 12:20 PM ET, 9:20 AM PT — and yes,
+#     the 4:20 is on purpose; The BroProphet would have it no other way)
+#   - mention polling every 15 minutes
+[triggers]
+crons = ["20 16 * * *", "*/15 * * * *"]
+
+# KV namespace for state (last mention id processed, set of already-replied tweet ids).
+# Create with: npm run kv:create   then paste the returned `id` below.
+[[kv_namespaces]]
+binding = "BROPROPHET_KV"
+id = "17566be1822943b2980d872f08ac2897"
+
+# Non-secret config. Override secrets via `wrangler secret put ...`.
+[vars]
+# X handle the bot posts as (no leading @). Used so we can ignore self-mentions.
+X_HANDLE = "broprophetbot"
+# Model used for generating new sayings and replies.
+OPENAI_MODEL = "gpt-4o-mini"
+# Probability (0..1) that the daily post is a freshly generated saying
+# vs. a randomly-pulled quote from the data/ corpus.
+NEW_SAYING_PROBABILITY = "0.5"
+# Max characters for a tweet. X allows 280 for free; bump if Premium.
+MAX_TWEET_LENGTH = "280"
+# Comma-separated list of hashtags to *always* be eligible. Optional.
+ALWAYS_HASHTAGS = ""
+# Cron expression that signals "this run is the daily post" run.
+# Must match exactly one of the crons above.
+DAILY_POST_CRON = "20 16 * * *"
