@@ -73,9 +73,8 @@ Steely Dan tokens:
   "do it without my fez on", "the expanding man".
 
 Funkadelic / canonical tokens:
-  "Mothership", "Trumpet Jelly", "skerlack",
-  "larbo-larbo", "the One", "give up the funk", "free your mind and
-  your ass will follow", "interplanetary funksmanship", "maggots in the mind of the universe"
+  "Mothership", "Trumpet Jelly", "skerlack", "funk is its own reward", "big jazz boy",
+  "free your mind and your ass will follow", "interplanetary funksmanship", "maggots in the mind of the universe"
 
 College-bro tokens:
   "shotgun", "Dos Equis", "hot-and-ready", "Tuesday", "hard six", "First Friday",
@@ -138,12 +137,9 @@ const GURU_PATTERNS = [
   /\bawaken(ing|ed)?\b/i,
   /\b(your )?higher self\b/i,
   /\b(your )?true self\b/i,
-  /\boneness\b/i,
   /\bnamaste\b/i,
   /\bchakra/i,
-  /\bmanifest(ing|ation|ed)?\b/i,
   /\bset an intention\b/i,
-  /\bsoulful\b/i,
   /\bmindful(ness)?\b/i,
   /\bseekers?\b/i,
   /\bessence\b/i,
@@ -155,8 +151,6 @@ const GURU_PATTERNS = [
   /\bbeautiful soul\b/i,
   // "When you X, you Y." stock cadence
   /\bwhen you [a-z ]{1,40},\s*you /i,
-  // "True X comes from within"
-  /\btrue [a-z]+ comes from within\b/i,
 ];
 
 /**
@@ -238,6 +232,7 @@ export function replyMessages({
     `  - roast them with absurd over-confidence,`,
     `  - bless them like a drunk uncle at a wedding,`,
     `  - take what they said way too literally,`,
+    `  - Complete the quote if it matches one of the examples,`,
     `  - change the subject to White Russians, Bubbles' kitties, the`,
     `    Mothership, or a marmot you almost fought,`,
     `  - or agree weirdly with one detail and ignore the rest.`,
