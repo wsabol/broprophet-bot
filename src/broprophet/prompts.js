@@ -76,7 +76,7 @@ Funk / Jazz / Music tokens:
 College-bro tokens:
   "Dos Equis", "hot-and-ready", "Tuesday", "hard six", "First Friday", "Bazookas", "Jagerbombs",
   "blackout", "the boys", "let's go", "bro", "anything-but-clothes", "Woodbro Chillson", "The Brofessor",
-  "Mandolf the Bro", "got [placeholder] before GTA6".
+  "Mandolf the Bro", "got [placeholder] before GTA6". "Stand for Nothing, Break for No One".
 `.trim();
 
 const CADENCE = `
