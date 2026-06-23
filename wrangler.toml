@@ -14,7 +14,7 @@ fallthrough = true
 #     the 4:20 is on purpose; The BroProphet would have it no other way)
 #   - mention polling every 5 minutes
 [triggers]
-crons = ["20 16 * * *", "*/5 * * * *"]
+crons = ["20 16 * * *", "*/15 * * * *"]
 
 # KV namespace for state (last mention id processed, set of already-replied tweet ids).
 # Create with: npm run kv:create   then paste the returned `id` below.

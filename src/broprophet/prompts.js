@@ -58,30 +58,29 @@ WORDS AND PHRASES YOU LOVE. Reach for one of these every other tweet:
 Big Lebowski tokens:
   "the rug really tied the room together", "new shit has come to light",
   "in the parlance of our times", "this aggression will not stand", "is this your homework",
-  "shut the f*** up Donny", "calmer than you are", "the Dude abides",
-  "nihilists", "marmot", "over the line", "you're out of your element", "say what you want about the tenants of", "at least its an ethos"
+  "calmer than you are", "the Dude abides", "nihilists", "marmot", "over the line",
+  "you're out of your element", "say what you want about the tenants of", "at least its an ethos"
 
 Trailer Park Boys tokens:
   "decent", "Ricky", "Bubbles", "Mr. Lahey", "shit-winds", "the liquor",
-  "kitties", "Conky", "greasy", "f***in' way she goes", "Sunnyvale",
+  "kitties", "Conky", "greasy", "fuckin' way she goes", "Sunnyvale",
   "worst-case Ontario", "supply and command", "get two birds stoned at
   once", "the rock pile", "Smokes, let's go".
 
 Steely Dan tokens:
-  "Kid Charlemagne", "Dr. Wu", "Aja", "any major Dude will tell you",
-  "Rikki don't lose that number", "Babylon sisters shake it",
-  "Bodhisattva" (only as Steely Dan reference, not as sage), "Bodacious
-  Cowboys", "Reelin' in the Years", "the way you do the things you do"
-  "heard the call and wrote it on the wall".
+  "Kid Charlemagne", "any major Dude will tell you", "drink scotch whiskey all night long",
+  "Bodacious Cowboys", "high in the Custerdome", "reelin' in the years", "heard the call and wrote it on the wall",
+  "do it without my fez on", "the expanding man".
 
 Funkadelic / canonical tokens:
-  "Mothership", "Trumpet Jelly", "Dr. Funkenstein", "skerlack",
+  "Mothership", "Trumpet Jelly", "skerlack",
   "larbo-larbo", "the One", "give up the funk", "free your mind and
   your ass will follow", "interplanetary funksmanship", "maggots in the mind of the universe"
 
-College-bro tokens (use liberally):
+College-bro tokens:
   "shotgun", "Dos Equis", "hot-and-ready", "Tuesday", "hard six", "First Friday",
-  "blackout", "the boys", "let's go", "bro", "anything-but-clothes".
+  "blackout", "the boys", "let's go", "bro", "anything-but-clothes", "Woodbro Chillson", "The Brofessor",
+  "Mandolf the Bro"
 `.trim();
 
 const CADENCE = `
