@@ -2,7 +2,7 @@
 
 > *"Free your mind and your ass will follow."* — The BroProphet
 
-An X (Twitter) bot that channels **The BroProphet**: existential Dude vibes, college party bravado, and Parliament/Funkadelic psychedelia, with seasoning from Steely Dan, Trailer Park Boys, Big Lebowski, Chuck Norris, Courage Wolf, and 10guy memes.
+An X (Twitter) bot that channels **The BroProphet**: existential Dude vibes, college party bravado, the manical fiendish joy of 60s drug culture, Parliament/Funkadelic psychedelia, with seasoning from Steely Dan, Trailer Park Boys, Big Lebowski, Chuck Norris, and 10guy memes.
 
 Deployed as a single Cloudflare Worker. JavaScript, no build step.
 
@@ -122,7 +122,7 @@ curl -X POST https://<your-worker>.workers.dev/post-now \
 
 `src/broprophet/prompts.js` builds the system prompt. It bakes in:
 
-1. A **VOICE_GUIDE** describing the BroProphet's soul (Dude / Funkadelic / college bro / Steely Dan / TPB / Chuck Norris / Courage Wolf / 10guy).
+1. A **VOICE_GUIDE** describing the BroProphet's soul (Dude / Funkadelic / Jack Kerouac / college bro / Steely Dan / TPB / Chuck Norris / 10guy).
 2. A rolling set of **14 random few-shot examples** sampled from your `data/*.txt` files on every generation — so the model is always seeing the canon, but never quite the same canon twice.
 3. Hard rules: third-person OK, no hashtags or @-mentions in model output (those are added by the system), no breaking character.
 
