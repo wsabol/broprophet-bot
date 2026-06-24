@@ -16,6 +16,7 @@ import { pickForcedToken, randomQuote } from "./corpus.js";
 import { parseAlwaysHashtags, pickHashtags } from "./hashtags.js";
 import {
   getAuthedUser,
+  getConversationTweets,
   getMentions,
   postTweet,
 } from "./x.js";
@@ -242,6 +243,79 @@ function maxMentionAgeHours(env) {
   return Number.isFinite(n) && n > 0 ? n : 24;
 }
 
+/** @param {any} env */
+function threadContextMaxPages(env) {
+  const n = Number(env.THREAD_CONTEXT_MAX_PAGES ?? "5");
+  return Number.isFinite(n) && n > 0 ? Math.floor(n) : 5;
+}
+
+/** @param {any} envelope */
+function usersByIdFromEnvelope(envelope) {
+  return (envelope?.includes?.users || []).reduce((acc, u) => {
+    acc[u.id] = u;
+    return acc;
+  }, /** @type {Record<string, any>} */ ({}));
+}
+
+function compareTweetIds(a, b) {
+  try {
+    const ai = BigInt(a);
+    const bi = BigInt(b);
+    if (ai < bi) return -1;
+    if (ai > bi) return 1;
+    return 0;
+  } catch {
+    return String(a).localeCompare(String(b));
+  }
+}
+
+function sortTweetsChronologically(tweets) {
+  return tweets.slice().sort((a, b) => compareTweetIds(a.id, b.id));
+}
+
+function dedupeTweets(tweets) {
+  const byId = new Map();
+  for (const tweet of tweets) {
+    if (tweet?.id) byId.set(tweet.id, tweet);
+  }
+  return Array.from(byId.values());
+}
+
+/**
+ * Render a compact, chronological transcript for the reply prompt. Usernames
+ * are part of the input context only; the model is still forbidden to emit
+ * @-mentions, and composeReply adds the single recipient mention later.
+ */
+function formatThreadContext(tweets, usersById, mentionTweet) {
+  const allTweets = dedupeTweets([...tweets, mentionTweet]);
+  const sorted = sortTweetsChronologically(allTweets);
+  return sorted
+    .map((tweet) => {
+      const user = usersById[tweet.author_id];
+      const handle = user?.username || tweet.author_id || "unknown";
+      const marker = tweet.id === mentionTweet.id ? "[MENTION] " : "";
+      return `${marker}@${handle}: ${tweet.text || ""}`;
+    })
+    .join("\n");
+}
+
+async function buildMentionThreadContext(env, mentionTweet, mentionUsersById, threadCache) {
+  const conversationId = mentionTweet.conversation_id || mentionTweet.id;
+  let envelope = threadCache.get(conversationId);
+  if (!envelope) {
+    envelope = await getConversationTweets(env, conversationId, {
+      pageSize: 100,
+      maxPages: threadContextMaxPages(env),
+    });
+    threadCache.set(conversationId, envelope);
+  }
+
+  return formatThreadContext(envelope?.data || [], {
+    ...mentionUsersById,
+    ...usersByIdFromEnvelope(envelope),
+  }, mentionTweet);
+}
+
 /**
  * Poll mentions and reply to anything new. Limits itself to 5 replies per run
  * to avoid burning rate limit budget when there's a backlog.
@@ -275,10 +349,7 @@ export async function processMentions(env, opts = {}) {
     maxResults: 20,
   });
   const tweets = envelope?.data || [];
-  const users = (envelope?.includes?.users || []).reduce((acc, u) => {
-    acc[u.id] = u;
-    return acc;
-  }, /** @type {Record<string, any>} */ ({}));
+  const users = usersByIdFromEnvelope(envelope);
 
   // Sort ascending by id so the resulting cursor is the highest at the end.
   const sortedAsc = tweets.slice().sort((a, b) => (BigInt(a.id) < BigInt(b.id) ? -1 : 1));
@@ -309,7 +380,8 @@ export async function processMentions(env, opts = {}) {
 
   let replied = 0;
   const errors = [];
-  const skipped = { tooOld: 0, self: 0, alreadyReplied: 0 };
+  const skipped = { tooOld: 0, self: 0, alreadyReplied: 0, threadUnavailable: 0 };
+  const threadCache = new Map();
 
   for (const t of sortedAsc) {
     // Never reply to ourselves, even if we somehow tag ourselves.
@@ -337,6 +409,15 @@ export async function processMentions(env, opts = {}) {
     const author = users[t.author_id];
     const handle = author?.username || "dude";
     const replyMaxLen = Math.max(60, maxTweetLength(env) - (handle.length + 2) - 24);
+    let threadContext;
+    try {
+      threadContext = await buildMentionThreadContext(env, t, users, threadCache);
+    } catch (err) {
+      console.warn(`thread fetch failed for ${t.id}:`, err);
+      errors.push({ id: t.id, error: `thread_context:${String(err)}` });
+      skipped.threadUnavailable++;
+      continue;
+    }
 
     let replyBody;
     try {
@@ -344,6 +425,7 @@ export async function processMentions(env, opts = {}) {
         buildMessages: ({ forcedToken, retryHint }) =>
           replyMessages({
             tweetText: t.text || "",
+            threadContext,
             tweetAuthorHandle: handle,
             maxLength: replyMaxLen,
             forcedToken,

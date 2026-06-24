@@ -9,7 +9,7 @@ Deployed as a single Cloudflare Worker. JavaScript, no build step.
 ## What it does
 
 - **Daily post** (one cron per day): posts either a verbatim quote from `data/*.txt` or a freshly generated saying from OpenAI, mixed by `NEW_SAYING_PROBABILITY`.
-- **Replies to mentions** (cron every 15 min): polls the authed user's mentions; for each new one, generates an in-character reply with OpenAI and posts it as a real X reply (`in_reply_to_tweet_id`).
+- **Replies to mentions** (cron every 15 min): polls the authed user's mentions; for each new one, fetches the conversation thread, generates an in-character reply with OpenAI, and posts it as a real X reply (`in_reply_to_tweet_id`).
 - **Hashtags** are picked from three buckets and squeezed into whatever budget the tweet has left: on-brand BroProphet/Funkadelic tags, absurd-humor tags, and audience-reach tags (jazz, funk, day-of-week tags, etc.).
 - **Idempotency**: KV stores `since_id` for mentions, a `replied:<id>` marker per tweet, and a `last_daily_post_date` guard so a misfiring cron can't double-post.
 
@@ -80,6 +80,7 @@ npm run secret:x-token-secret
 - `MAX_TWEET_LENGTH` — `280` by default. Bump if your account is X Premium.
 - `ALWAYS_HASHTAGS` — optional comma-separated tags to always include (e.g. `BroProphet,FunkIsItsOwnReward`).
 - `DAILY_POST_CRON` — the cron expression that triggers the daily post. Must match exactly one of the entries in `[triggers].crons`.
+- `THREAD_CONTEXT_MAX_PAGES` — optional safety cap for X recent-search pages fetched per mention thread (defaults to `5`, up to 500 tweets of context).
 
 ### 6. Deploy
 
