@@ -42,3 +42,6 @@ DAILY_POST_CRON = "20 16 * * *"
 # ignored at both the X API layer (start_time) and client-side. Stops the bot
 # from ever spamming years-old @-mentions after a KV reset or first deploy.
 MAX_MENTION_AGE_HOURS = "24"
+# Safety cap for X recent-search pages fetched to provide full thread context
+# before replying to a mention. Each page can contain up to 100 tweets.
+THREAD_CONTEXT_MAX_PAGES = "5"

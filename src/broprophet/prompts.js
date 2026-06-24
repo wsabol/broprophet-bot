@@ -209,6 +209,7 @@ export function newSayingMessages({ maxLength, forcedToken, retryHint }) {
  *
  * @param {object} args
  * @param {string} args.tweetText
+ * @param {string} [args.threadContext]
  * @param {string} args.tweetAuthorHandle  (no `@`)
  * @param {number} args.maxLength
  * @param {string} [args.forcedToken]
@@ -216,6 +217,7 @@ export function newSayingMessages({ maxLength, forcedToken, retryHint }) {
  */
 export function replyMessages({
   tweetText,
+  threadContext,
   tweetAuthorHandle,
   maxLength,
   forcedToken,
@@ -254,8 +256,10 @@ export function replyMessages({
     {
       role: "user",
       content:
-        `@${tweetAuthorHandle} just tagged you on X with this tweet:\n\n` +
-        `"""${tweetText}"""\n\n` +
+        `@${tweetAuthorHandle} just tagged you on X. Here is the conversation ` +
+        `thread, oldest to newest. The line marked [MENTION] is the tweet you ` +
+        `are replying to:\n\n` +
+        `"""${threadContext || `[MENTION] @${tweetAuthorHandle}: ${tweetText}`}"""\n\n` +
         direction +
         (extras.length ? `\n\n${extras.join(" ")}` : ""),
     },
