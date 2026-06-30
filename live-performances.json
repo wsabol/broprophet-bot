@@ -400,13 +400,23 @@
     "description": "Research indicates that 1% of College Station is in control of 99% of the FUNK. WE ARE THE 1% and we're gonna take it right to Church Street to distribute the wealth. Be ye a Getuplican or a Downocrat, come join us to rally behind the funk and the groove that this nation was founded upon."
   },
   {
-    "title": "Rock The Republic",
+    "title": "Rock The Republic (Conglomerate)",
     "date": "2011-11-12",
-    "time": "",
-    "venue": "Downtown Uncorked",
-    "acts": ["The Insiders", "Lindsay Harris", "The Syndicate", "Caleb Mak", "Strawberry Jam"],
-    "sources": ["https://www.facebook.com/share/p/18phNwBWKq/"],
+    "time": "6:00 PM",
+    "venue": "The Village",
+    "acts": ["The Insiders", "Lindsay Harris", "The Conglomerate", "Caleb Mak", "Strawberry Jam"],
+    "sources": ["https://www.facebook.com/share/p/18phNwBWKq/", "Ryan's Testimony on 2026-06-30"],
     "notes": "",
+    "description": ""
+  },
+  {
+    "title": "Rock The Republic (Syndicate)",
+    "date": "2011-11-13",
+    "time": "12:00 AM",
+    "venue": "Downtown Uncorked",
+    "acts": ["The Syndicate"],
+    "sources": ["https://www.facebook.com/share/p/18phNwBWKq/", "Ryan's Testimony on 2026-06-30"],
+    "notes": "Night of 2011-11-12. Famously a certain bass player went to the green room got into the Buffalo Trace and got too drunk to even stand in between the two sets - But despite my anxieties he knocked the syndicate gig out of the park.",
     "description": ""
   },
   {
@@ -702,7 +712,7 @@
   },
   {
     "title": "Mardis Gras with The Conglomerate & Hazy Ray",
-    "date": "2016-02-04",
+    "date": "2016-02-06",
     "time": "",
     "venue": "",
     "acts": ["Hazy Ray", "The Conglomerate"],
@@ -712,12 +722,12 @@
   },
   {
     "title": "Weswick's Wedding",
-    "date": "2016-06-24",
+    "date": "2016-06-25",
     "time": "",
     "venue": "",
     "acts": ["Thee Conglomerate"],
     "sources": ["Nick's post in Conglomerate private group on 2016-06-19"],
-    "notes": "Exact date uncertain",
+    "notes": "",
     "description": ""
   }
 ]
