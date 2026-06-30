@@ -1,743 +1,1234 @@
 [
   {
-    "title": "Busking",
-    "date": "2009",
-    "time": "",
-    "venue": "Spokane, WA",
-    "acts": [],
-    "sources": [],
-    "notes": "McIan, Will, Eddie on a street corner in Spokane, WA jamming Real Book tunes. We were there with Hullabaloo for the NCAA Women's NIT tournament.",
-    "description": ""
-  },
-  {
     "title": "Downtown Uncorked Jazz Jam",
     "date": "2009-12-09",
     "time": "",
     "venue": "Downtown Uncorked",
-    "acts": ["Greg Tivis"],
-    "sources": ["https://www.facebook.com/share/p/183ufYwd5q/"],
+    "acts": [
+      "Greg Tivis"
+    ],
+    "sources": [
+      "https://www.facebook.com/share/p/183ufYwd5q/"
+    ],
     "notes": "Our group just forming at this point. Ryan and Sean weren't involved, It was just Will, McIan, Brent, and Eddie at this event.'",
-    "description": "McIan: I distinctly remember Brent ripping the Brent note that night though, because it was the last time Tivis let his ass play hahaha. Tivis was not fond of Brent hahaha. I remember him talking to me some other night when I was playing with his Dixie land band and he was like “don't bring that guy around” haha"
+    "description": "McIan: I distinctly remember Brent ripping the Brent note that night though, because it was the last time Tivis let his ass play hahaha. Tivis was not fond of Brent hahaha. I remember him talking to me some other night when I was playing with his Dixie land band and he was like “don't bring that guy around” haha",
+    "confidence": "high"
   },
   {
-    "title": "The Conglomerate @ Burger Boy",
-    "date": "2010-03-12",
+    "title": "Busking",
+    "date": "2010-03-16",
     "time": "",
+    "venue": "Seattle, WA",
+    "acts": [],
+    "sources": [],
+    "notes": "March 16 - March 21. We were there with Hullabaloo for the 2010 NCAA Division I women's basketball tournament.",
+    "description": "McIan, Will, Eddie (and Bog?) on a street corner in Seattle, WA jamming Real Book tunes.",
+    "confidence": "medium"
+  },
+  {
+    "title": "Burger Boy Expo",
+    "date": "2010-03-25",
+    "time": "9:00 PM",
     "venue": "Burger Boy Northgate, 311 Church Ave",
-    "acts": ["The Conglomerate"],
-    "sources": ["https://www.facebook.com/share/195jFMj8AF/"],
+    "acts": [
+      "The Conglomerate"
+    ],
+    "sources": [
+      "Will's Calendar",
+      "https://www.facebook.com/share/195jFMj8AF/"
+    ],
     "notes": "The first official of the Conglomerate. Date is approximate. This was expo for local musical acts. Each performer was given a 15 minute set. We were so good, they let us play for almost an hour. ",
-    "description": ""
+    "description": "possibly billed as a Hip Hop night?",
+    "confidence": "high"
   },
   {
     "title": "Drasco Dance Party",
     "date": "2010-04-23",
     "time": "",
     "venue": "Basil Whippet's",
-    "acts": ["The Conglomerate"],
-    "sources": ["Mark's facebook post on 2010-04-22", "Mark's facebook post on 2010-04-23", "Eddie's facebook post on 2010-04-25"],
+    "acts": [
+      "The Conglomerate"
+    ],
+    "sources": [
+      "Mark's facebook post on 2010-04-22",
+      "Mark's facebook post on 2010-04-23",
+      "Eddie's facebook post on 2010-04-25"
+    ],
     "notes": "The last show with all the original members; the first emergence of 'the Lick'. Live recordings made available on 2010-04-25",
-    "description": ""
+    "description": "",
+    "confidence": "medium"
   },
   {
     "title": "The Syndicate",
     "date": "2010-07-02",
     "time": "8:00 PM",
     "venue": "Muldoon's",
-    "acts": ["The Syndicate"],
-    "sources": ["Eddie's facebook post on 2010-06-30"],
+    "acts": [
+      "The Syndicate"
+    ],
+    "sources": [
+      "Eddie's facebook post on 2010-06-30"
+    ],
     "notes": "",
-    "description": "Put some Soul in your Weekend with out Cover!\nJazz? => I'll be playing at Muldoon's Coffee House, Friday @ 8pm\nFunk? => The Conglomerate is playing at Shotzi's, Saturday @ 10:30pm"
+    "description": "Put some Soul in your Weekend with out Cover!\nJazz? => I'll be playing at Muldoon's Coffee House, Friday @ 8pm\nFunk? => The Conglomerate is playing at Shotzi's, Saturday @ 10:30pm",
+    "confidence": "medium"
   },
   {
     "title": "Rock Your Independence",
     "date": "2010-07-03",
     "time": "10:30 PM",
     "venue": "Schotzi's",
-    "acts": ["The Conglomerate", "Five Syllable Rule"],
-    "sources": ["https://www.facebook.com/share/p/1Cw7BjLZSR/", "https://www.facebook.com/share/p/1Gi6KCMhL2/"],
+    "acts": [
+      "The Conglomerate",
+      "Five Syllable Rule"
+    ],
+    "sources": [
+      "https://www.facebook.com/share/p/1Cw7BjLZSR/",
+      "https://www.facebook.com/share/p/1Gi6KCMhL2/"
+    ],
     "notes": "",
-    "description": ""
+    "description": "",
+    "confidence": "high"
   },
   {
     "title": "Goodbye Summer Party",
     "date": "2010-08-04",
     "time": "9:00 PM",
     "venue": "Schotzi's",
-    "acts": ["Chip Tha Ripper", "strawberryJAM"],
-    "sources": ["https://www.facebook.com/share/p/18CAB7bhpP/", "https://www.facebook.com/media/set/?vanity=TheConglomerate.CS&set=a.144814558886860"],
+    "acts": [
+      "Chip Tha Ripper",
+      "strawberryJAM"
+    ],
+    "sources": [
+      "https://www.facebook.com/share/p/18CAB7bhpP/",
+      "https://www.facebook.com/media/set/?vanity=TheConglomerate.CS&set=a.144814558886860"
+    ],
     "notes": "Likely involved Mojo and Amir Safi. Based on facebook mention on 2010-08-08",
-    "description": ""
+    "description": "",
+    "confidence": "high"
+  },
+  {
+    "title": "The Syndicate",
+    "date": "2010-08-28",
+    "time": "8:00 PM",
+    "venue": "Downtown Uncorked",
+    "acts": [
+      "The Syndicate"
+    ],
+    "sources": [
+      "Will's Calendar"
+    ],
+    "notes": "",
+    "description": "",
+    "confidence": "low"
   },
   {
     "title": "Drasco - Blacklight Party featuring The Conglomerate",
     "date": "2010-09-03",
     "time": "",
     "venue": "Basil Whippet's",
-    "acts": ["The Conglomerate"],
-    "sources": ["https://www.facebook.com/share/p/1bVfUqjS4T/", "Will's facebook post 2010-09-03", "Will's facebook post 2010-08-30"],
+    "acts": [
+      "The Conglomerate"
+    ],
+    "sources": [
+      "https://www.facebook.com/share/p/1bVfUqjS4T/",
+      "Will's facebook post 2010-09-03",
+      "Will's facebook post 2010-08-30"
+    ],
     "notes": "AFTER PARTY AT NANA KOJO'S 22nd bday party!!!!!! WHOOP!!!",
-    "description": ""
+    "description": "",
+    "confidence": "high"
   },
   {
     "title": "Impromptu gig with The Conglomerate",
     "date": "2010-09-19",
     "time": "",
     "venue": "",
-    "acts": ["The Conglomerate"],
-    "sources": ["Ryan's facebook post on 2010-09-19"],
+    "acts": [
+      "The Conglomerate"
+    ],
+    "sources": [
+      "Ryan's facebook post on 2010-09-19"
+    ],
     "description": "Followed by an epic ride around east Texas waiting to get 'Deliveranced' with Sean Rodriguez. Almost died, got arrested, etc. 'You go hard, or you go home broski!!' - McIan Amos.",
-    "notes": ""
+    "notes": "",
+    "confidence": "medium"
   },
   {
     "title": "The Syndicate at Downtown Uncorked",
-    "date": "2010-09-26",
+    "date": "2010-09-25",
     "time": "",
     "venue": "Downtown Uncorked",
-    "acts": ["The Syndicate"],
-    "sources": ["Memory/Photos posted in Conglomochat"],
+    "acts": [
+      "The Syndicate"
+    ],
+    "sources": [
+      "Will's Calendar",
+      "Memory/Photos posted in Conglomochat"
+    ],
     "description": "",
-    "notes": "McIan seen wearing Will's shirt"
+    "notes": "McIan seen wearing Will's shirt",
+    "confidence": "medium"
   },
   {
     "title": "Headphones for Hope - Hilde Back Education Fund Benefit Concert",
     "date": "2010-10-02",
     "time": "6:00 PM",
     "venue": "Muldoon's",
-    "acts": ["The Conglomerate"],
-    "sources": ["https://www.facebook.com/share/p/18yJ5ZrJhA/", "Will's facebook post on 2010-10-01", "Eddie's facebook post on 2010-10-01"],
+    "acts": [
+      "The Conglomerate"
+    ],
+    "sources": [
+      "https://www.facebook.com/share/p/18yJ5ZrJhA/",
+      "Will's facebook post on 2010-10-01",
+      "Eddie's facebook post on 2010-10-01"
+    ],
     "notes": "Headphones for Hope is abbreviated as H4H in the sources",
-    "description": ""
+    "description": "",
+    "confidence": "high"
+  },
+  {
+    "title": "The Syndicate",
+    "date": "2010-10-23",
+    "time": "8:00 PM",
+    "venue": "Downtown Uncorked",
+    "acts": [
+      "The Syndicate"
+    ],
+    "sources": [
+      "Will's Calendar"
+    ],
+    "notes": "",
+    "description": "",
+    "confidence": "low"
   },
   {
     "title": "The Conglomerate feat Soul Track Mind",
     "date": "2010-10-23",
     "time": "10:30 PM",
     "venue": "Schotzi's",
-    "acts": ["The Conglomerate", "Soul Track Mind"],
-    "sources": ["https://www.facebook.com/share/p/17bGov4BVK/"],
+    "acts": [
+      "The Conglomerate",
+      "Soul Track Mind"
+    ],
+    "sources": [
+      "https://www.facebook.com/share/p/17bGov4BVK/"
+    ],
     "notes": "",
-    "description": ""
+    "description": "",
+    "confidence": "high"
   },
   {
     "title": "The Conglomerate with The Soul Tones",
     "date": "2010-11-03",
     "time": "",
     "venue": "The Flying W Bar and Grill",
-    "acts": ["The Conglomerate", "The Soul Tones"],
-    "sources": ["https://www.facebook.com/share/p/1CrvZ5xPJc/"],
+    "acts": [
+      "The Conglomerate",
+      "The Soul Tones"
+    ],
+    "sources": [
+      "https://www.facebook.com/share/p/1CrvZ5xPJc/"
+    ],
     "notes": "The Soul Tones was a pop/soul group Will was drumming with on the side",
-    "description": ""
+    "description": "",
+    "confidence": "high"
   },
   {
     "title": "The Syndicate",
     "date": "2010-11-06",
     "time": "",
     "venue": "Tailgate",
-    "acts": ["The Syndicate"],
-    "sources": ["Conglomochat 2025-11-06"],
+    "acts": [
+      "The Syndicate"
+    ],
+    "sources": [
+      "Conglomochat 2025-11-06"
+    ],
     "notes": "the Conglomerate played Zapatos afterwards.",
-    "description": ""
+    "description": "",
+    "confidence": "medium"
   },
   {
     "title": "Hip Hop Night with Josef Pierre and The Conglomerate",
     "date": "2010-11-06",
     "time": "10:00 PM",
     "venue": "Zapatos",
-    "acts": ["Josef Pierre", "The Conglomerate"],
-    "sources": ["https://www.facebook.com/share/p/14iDAbpzwbB/", "Conglomochat 2025-11-06", "Will's facebook post on 2010-11-05"],
+    "acts": [
+      "Josef Pierre",
+      "The Conglomerate"
+    ],
+    "sources": [
+      "https://www.facebook.com/share/p/14iDAbpzwbB/",
+      "Conglomochat 2025-11-06",
+      "Will's facebook post on 2010-11-05"
+    ],
     "notes": "Nick's first show. The Aggies BTHO Oklahoma 33-19 the same day;",
-    "description": ""
+    "description": "",
+    "confidence": "high"
   },
   {
     "title": "???",
     "date": "2010-12-03",
     "time": "",
     "venue": "",
-    "acts": ["The Conglomerate"],
-    "sources": ["Private Facebook group post on 2010-12-03"],
+    "acts": [
+      "The Conglomerate"
+    ],
+    "sources": [
+      "Private Facebook group post on 2010-12-03"
+    ],
     "notes": "",
-    "description": ""
+    "description": "",
+    "confidence": "low"
   },
   {
     "title": "Funky Friday with The Conglomerate feat Taraz and Delayed Reaction",
     "date": "2011-01-14",
     "time": "9:30 PM",
     "venue": "Revolutions",
-    "acts": ["The Conglomerate", "Taraz", "Delayed Reaction"],
-    "sources": ["https://www.facebook.com/share/p/1EWDcFaawj/"],
+    "acts": [
+      "The Conglomerate",
+      "Taraz",
+      "Delayed Reaction"
+    ],
+    "sources": [
+      "https://www.facebook.com/share/p/1EWDcFaawj/"
+    ],
     "notes": "The week Barclay Moffitt was in town, we played a show with him at Revs",
-    "description": ""
+    "description": "",
+    "confidence": "high"
   },
   {
     "title": "Potbelly Charity Music Fest",
     "date": "2011-01-29",
     "time": "6:30 PM",
     "venue": "Potbelly's",
-    "acts": ["The Conglomerate", "Taz"],
-    "sources": ["Eddie's facebook post on 2011-01-29", "Private Facebook group post on 2011-01-03"],
+    "acts": [
+      "The Conglomerate",
+      "Taz"
+    ],
+    "sources": [
+      "Eddie's facebook post on 2011-01-29",
+      "Private Facebook group post on 2011-01-03"
+    ],
     "notes": "",
-    "description": ""
+    "description": "",
+    "confidence": "medium"
   },
   {
     "title": "The Conglomerate w/ Strawberry Jam & Lindsey Harris",
     "date": "2011-02-05",
     "time": "9:00 PM",
     "venue": "Schotzi's",
-    "acts": ["The Conglomerate", "Strawberry Jam", "Lindsey Harris"],
-    "sources": ["Eddie's facebook post on 2011-01-30", "https://www.facebook.com/share/p/17aosQFYrZ/"],
+    "acts": [
+      "The Conglomerate",
+      "Strawberry Jam",
+      "Lindsey Harris"
+    ],
+    "sources": [
+      "Eddie's facebook post on 2011-01-30",
+      "https://www.facebook.com/share/p/17aosQFYrZ/"
+    ],
     "notes": "",
-    "description": "The Smooth Jam video recording with Chris on drums https://youtu.be/eeY9ya_tb90"
+    "description": "The Smooth Jam video recording with Chris on drums https://youtu.be/eeY9ya_tb90",
+    "confidence": "high"
   },
   {
     "title": "The Conglomerate at the Austin Marathon",
     "date": "2011-02-20",
     "time": "10:00 AM",
     "venue": "Steps of the Texas Capital building",
-    "acts": ["The Conglomerate"],
-    "sources": ["https://www.facebook.com/share/p/1BeNp9oyuW/", "Jane's facebook post on 2011-02-18", "Nick's facebook post on 2011-02-18", "Eddie's facebook post on 2011-02-19"],
+    "acts": [
+      "The Conglomerate"
+    ],
+    "sources": [
+      "https://www.facebook.com/share/p/1BeNp9oyuW/",
+      "Jane's facebook post on 2011-02-18",
+      "Nick's facebook post on 2011-02-18",
+      "Eddie's facebook post on 2011-02-19"
+    ],
     "notes": "",
-    "description": "The Conglomerate this Sunday on the steps of the Capital starting at 10 am! If you miss this FREE show you will miss the Best Jazz Band ever!"
+    "description": "The Conglomerate this Sunday on the steps of the Capital starting at 10 am! If you miss this FREE show you will miss the Best Jazz Band ever!",
+    "confidence": "high"
   },
   {
     "title": "Funkn' Up the Street",
     "date": "2011-02-26",
     "time": "11:30 PM",
     "venue": "Church Street BBQ",
-    "acts": ["The Conglomerate", "Lindsay Harris", "Cube"],
-    "sources": ["Will's Calendar", "https://www.facebook.com/share/1XicQiJZyg/", "https://www.facebook.com/share/1BvWnpesZ2/"],
+    "acts": [
+      "The Conglomerate",
+      "Lindsay Harris",
+      "Cube"
+    ],
+    "sources": [
+      "Will's Calendar",
+      "https://www.facebook.com/share/1XicQiJZyg/",
+      "https://www.facebook.com/share/1BvWnpesZ2/"
+    ],
     "notes": "The Conglomerate featuring Lindsay Harris and Cube.",
-    "description": ""
+    "description": "",
+    "confidence": "high"
   },
   {
     "title": "Soul Track Mind, The Conglomerate and Delayed Reaction",
     "date": "2011-03-26",
     "time": "10:45 PM",
     "venue": "Grand Stafford Theater",
-    "acts": ["Soul Track Mind", "The Conglomerate", "Delayed Reaction"],
-    "sources": ["Eddie's facebook post on 2011-03-21", "Private Facebook group post on 2011-03-18"],
+    "acts": [
+      "Soul Track Mind",
+      "The Conglomerate",
+      "Delayed Reaction"
+    ],
+    "sources": [
+      "Eddie's facebook post on 2011-03-21",
+      "Private Facebook group post on 2011-03-18"
+    ],
     "notes": "",
-    "description": ""
+    "description": "",
+    "confidence": "medium"
   },
   {
     "title": "Pikes Pit: Cook off and Concert",
     "date": "2011-04-02",
     "time": "5:00 PM",
     "venue": "Pikes Pit",
-    "acts": ["Kimberly Dunn", "The Conglomerate", "Sweet Lu and the Low Fives", "The Wicked River Band", "Seth Candan", "Granger Smith"],
-    "sources": ["Conglomermate Facebook Document 2011-03-29"],
+    "acts": [
+      "Kimberly Dunn",
+      "The Conglomerate",
+      "Sweet Lu and the Low Fives",
+      "The Wicked River Band",
+      "Seth Candan",
+      "Granger Smith"
+    ],
+    "sources": [
+      "Conglomermate Facebook Document 2011-03-29"
+    ],
     "notes": "",
-    "description": ""
+    "description": "",
+    "confidence": "medium"
   },
   {
     "title": "Strawberry Jam CD Release Party",
     "date": "2011-04-02",
     "time": "9:00 PM",
     "venue": "Schotzi's",
-    "acts": ["The Conglomerate", "Strawberry Jam", "Carter Beckworth", "DJ Get Low"],
-    "sources": ["Will's Calendar", "Conglomermate Facebook Document 2011-03-29", "Private Facebook group post on 2011-02-26"],
+    "acts": [
+      "The Conglomerate",
+      "Strawberry Jam",
+      "Carter Beckworth",
+      "DJ Get Low"
+    ],
+    "sources": [
+      "Will's Calendar",
+      "Conglomermate Facebook Document 2011-03-29",
+      "Private Facebook group post on 2011-02-26"
+    ],
     "notes": "",
-    "description": ""
+    "description": "",
+    "confidence": "high"
   },
   {
     "title": "Barbara Bush Conference Center",
     "date": "2011-04-07",
     "time": "7:30 PM",
     "venue": "Barbara Bush Conference Center",
-    "acts": ["The Conglomerate"],
-    "sources": ["Private Facebook group post on 2011-04-04"],
+    "acts": [
+      "The Conglomerate"
+    ],
+    "sources": [
+      "Private Facebook group post on 2011-04-04"
+    ],
     "notes": "The dinner is going to be this Thursday at the Barba Bush conference Center at 7:30. We need yal to have only a few songs prepared",
-    "description": ""
+    "description": "",
+    "confidence": "medium"
   },
   {
     "title": "The Conglomerate at Schotzi's",
     "date": "2011-04-09",
     "time": "",
     "venue": "Schotzi's",
-    "acts": ["Brad Cooper", "The Conglomerate", "and Joe Teichman"],
-    "sources": ["https://www.facebook.com/share/p/1CW5BwUiJu/"],
+    "acts": [
+      "Brad Cooper",
+      "The Conglomerate",
+      "and Joe Teichman"
+    ],
+    "sources": [
+      "https://www.facebook.com/share/p/1CW5BwUiJu/"
+    ],
     "description": "",
-    "notes": ""
+    "notes": "",
+    "confidence": "high"
   },
   {
     "title": "Banquet",
     "date": "2011-04-22",
     "time": "",
     "venue": "Letterman's Lounge",
-    "acts": ["The Conglomerate"],
-    "sources": ["Private Facebook group post on 2011-02-28"],
+    "acts": [
+      "The Conglomerate"
+    ],
+    "sources": [
+      "Private Facebook group post on 2011-02-28"
+    ],
     "description": "???",
-    "notes": ""
+    "notes": "",
+    "confidence": "medium"
   },
   {
     "title": "Aggie Japan Benefit Concert",
     "date": "2011-04-29",
     "time": "",
     "venue": "Simpson Drill Field",
-    "acts": ["The Conglomerate"],
-    "sources": ["https://www.facebook.com/share/p/17uhb5hsja/"],
+    "acts": [
+      "The Conglomerate"
+    ],
+    "sources": [
+      "https://www.facebook.com/share/p/17uhb5hsja/"
+    ],
     "description": "",
-    "notes": ""
+    "notes": "",
+    "confidence": "high"
   },
   {
     "title": "Full Hearts Foundation Charity Event",
     "date": "2011-05-07",
     "time": "8:00 PM",
     "venue": "Schotzi's",
-    "acts": ["The Syndicate"],
-    "sources": ["Private Facebook group post on 2011-04-27"],
+    "acts": [
+      "The Syndicate"
+    ],
+    "sources": [
+      "Private Facebook group post on 2011-04-27"
+    ],
     "notes": "organized by Andrew Reese. soundcheck at 7:15 PM",
-    "description": ""
+    "description": "",
+    "confidence": "medium"
   },
   {
     "title": "Brad Cooper Record Release",
     "date": "2011-05-07",
     "time": "9:00 PM",
     "venue": "Schotzi's",
-    "acts": ["Brad Cooper", "The Conglomerate", "Jillian Edwards", "DC"],
-    "sources": ["Will's Calendar", "Nick's facebook post on 2011-05-07", "https://www.facebook.com/share/p/1Ax8vrNwPT/"],
+    "acts": [
+      "Brad Cooper",
+      "The Conglomerate",
+      "Jillian Edwards",
+      "DC"
+    ],
+    "sources": [
+      "Will's Calendar",
+      "Nick's facebook post on 2011-05-07",
+      "https://www.facebook.com/share/p/1Ax8vrNwPT/"
+    ],
     "notes": "Yes, some of us played three events on the same day, same venue: Charity Event, backup band for Brad Cooper, and a Conglomerate set.",
-    "description": ""
+    "description": "",
+    "confidence": "high"
   },
   {
     "title": "Charity Event? Josef?",
     "date": "2011-05-13",
     "time": "7:15 PM",
     "venue": "Schotzi's",
-    "acts": ["The Conglomerate", "Josef Pierre"],
-    "sources": ["Private Facebook group post on 2011-05-06"],
+    "acts": [
+      "The Conglomerate",
+      "Josef Pierre"
+    ],
+    "sources": [
+      "Private Facebook group post on 2011-05-06"
+    ],
     "notes": "",
-    "description": ""
+    "description": "",
+    "confidence": "low"
   },
   {
     "title": "Time for Church with The Conglomerate",
     "date": "2011-06-25",
     "time": "12:00 AM",
     "venue": "Church Street BBQ",
-    "acts": ["The Conglomerate"],
-    "sources": ["https://www.facebook.com/events/900437950014797"],
+    "acts": [
+      "The Conglomerate"
+    ],
+    "sources": [
+      "https://www.facebook.com/events/900437950014797"
+    ],
     "description": "Every church has its music, but Church St Blues and BBQ is getting its funk on with a brand spanking new liquor license THIS FRIDAY and The Conglomerate wants to celebrate!",
-    "notes": "The night of 2011-06-24"
+    "notes": "The night of 2011-06-24",
+    "confidence": "high"
   },
   {
     "title": "The Conglomerate",
     "date": "2011-07-01",
     "time": "",
     "venue": "Schotzi's",
-    "acts": ["The Conglomerate"],
-    "sources": ["https://www.facebook.com/share/p/1JrNQs5AAs/"],
+    "acts": [
+      "The Conglomerate"
+    ],
+    "sources": [
+      "https://www.facebook.com/share/p/1JrNQs5AAs/"
+    ],
     "description": "",
-    "notes": ""
+    "notes": "",
+    "confidence": "high"
   },
   {
     "title": "Church St's 1 year anniversary",
     "date": "2011-07-02",
     "time": "",
     "venue": "Church Street BBQ",
-    "acts": ["The Conglomerate", "Wicked River Band", "Black Pistol Fire"],
-    "sources": ["Private Facebook group post on 2011-05-18"],
+    "acts": [
+      "The Conglomerate",
+      "Wicked River Band",
+      "Black Pistol Fire"
+    ],
+    "sources": [
+      "Private Facebook group post on 2011-05-18"
+    ],
     "description": "",
-    "notes": ""
+    "notes": "",
+    "confidence": "medium"
   },
   {
     "title": "The Conglomerate & The Reagan Firestorm",
     "date": "2011-07-29",
     "time": "10:30 PM",
     "venue": "Schotzi's",
-    "acts": ["The Conglomerate", "The Reagan Firestorm"],
-    "sources": ["https://www.facebook.com/share/p/198h2sCdwJ/"],
+    "acts": [
+      "The Conglomerate",
+      "The Reagan Firestorm"
+    ],
+    "sources": [
+      "https://www.facebook.com/share/p/198h2sCdwJ/"
+    ],
     "description": "",
-    "notes": "opening for The Reagan Firestorm at Schotzi's"
+    "notes": "opening for The Reagan Firestorm at Schotzi's",
+    "confidence": "high"
   },
   {
     "title": "The Conglomerate at Mosby's backyard",
     "date": "2011-09-02",
     "time": "",
     "venue": "Mosby's backyard",
-    "acts": ["The Conglomerate", "The Reagan Firestorm"],
-    "sources": ["Private Facebook group post on 2011-08-30"],
+    "acts": [
+      "The Conglomerate",
+      "The Reagan Firestorm"
+    ],
+    "sources": [
+      "Private Facebook group post on 2011-08-30"
+    ],
     "notes": "Hey, just got off the phone with Travis. We ok to play a gig on Sept 2nd ?... we are headlining friday and playing the back yard we are responsible for taking car of our own sound. ",
-    "description": ""
+    "description": "",
+    "confidence": "medium"
   },
   {
     "title": "Funk on the Gate!",
     "date": "2011-09-30",
     "time": "",
     "venue": "Church Street BBQ",
-    "acts": ["The Conglomerate"],
-    "sources": ["https://www.facebook.com/share/18zWeXdAEK/", "Eddie's facebook post on 2011-09-30"],
+    "acts": [
+      "The Conglomerate"
+    ],
+    "sources": [
+      "https://www.facebook.com/share/18zWeXdAEK/",
+      "Eddie's facebook post on 2011-09-30"
+    ],
     "notes": "Lance Lanier's comment on The Conglomerate page",
-    "description": ""
+    "description": "",
+    "confidence": "high"
   },
   {
     "title": "BTHO Baylor",
     "date": "2011-10-15",
     "time": "10:00 PM",
     "venue": "Schotzi's",
-    "acts": ["The Conglomerate", "Nelo"],
-    "sources": ["https://www.facebook.com/share/p/18kD8abXzz/"],
+    "acts": [
+      "The Conglomerate",
+      "Nelo"
+    ],
+    "sources": [
+      "https://www.facebook.com/share/p/18kD8abXzz/"
+    ],
     "notes": "",
-    "description": "Playing with The Conglomerate tonight at Schotzis Bar. Set starts around 10ish. Do please celebrate the BTHO-ing of Baylor with us."
+    "description": "Playing with The Conglomerate tonight at Schotzis Bar. Set starts around 10ish. Do please celebrate the BTHO-ing of Baylor with us.",
+    "confidence": "high"
   },
   {
     "title": "Halloween Spooktacular",
     "date": "2011-10-29",
     "time": "",
     "venue": "Revolutions",
-    "acts": ["The Conglomerate"],
-    "sources": ["https://www.facebook.com/share/p/1D75p65jYA/"],
+    "acts": [
+      "The Conglomerate"
+    ],
+    "sources": [
+      "https://www.facebook.com/share/p/1D75p65jYA/"
+    ],
     "notes": "the “you must be Nick's sister” show",
-    "description": ""
+    "description": "",
+    "confidence": "high"
   },
   {
     "title": "OCCUPY CHURCH STREET",
     "date": "2011-11-06",
     "time": "12:30 AM",
     "venue": "Church Street BBQ",
-    "acts": ["The Conglomerate"],
-    "sources": ["https://www.facebook.com/events/739438182835790"],
+    "acts": [
+      "The Conglomerate"
+    ],
+    "sources": [
+      "https://www.facebook.com/events/739438182835790"
+    ],
     "notes": "",
-    "description": "Research indicates that 1% of College Station is in control of 99% of the FUNK. WE ARE THE 1% and we're gonna take it right to Church Street to distribute the wealth. Be ye a Getuplican or a Downocrat, come join us to rally behind the funk and the groove that this nation was founded upon."
+    "description": "Research indicates that 1% of College Station is in control of 99% of the FUNK. WE ARE THE 1% and we're gonna take it right to Church Street to distribute the wealth. Be ye a Getuplican or a Downocrat, come join us to rally behind the funk and the groove that this nation was founded upon.",
+    "confidence": "high"
   },
   {
     "title": "Rock The Republic (Conglomerate)",
     "date": "2011-11-12",
     "time": "6:00 PM",
     "venue": "The Village",
-    "acts": ["The Insiders", "Lindsay Harris", "The Conglomerate", "Caleb Mak", "Strawberry Jam"],
-    "sources": ["https://www.facebook.com/share/p/18phNwBWKq/", "Ryan's Testimony on 2026-06-30"],
+    "acts": [
+      "The Insiders",
+      "Lindsay Harris",
+      "The Conglomerate",
+      "Caleb Mak",
+      "Strawberry Jam"
+    ],
+    "sources": [
+      "https://www.facebook.com/share/p/18phNwBWKq/",
+      "Ryan's Testimony on 2026-06-30"
+    ],
     "notes": "",
-    "description": ""
+    "description": "",
+    "confidence": "high"
   },
   {
     "title": "Rock The Republic (Syndicate)",
     "date": "2011-11-13",
     "time": "12:00 AM",
     "venue": "Downtown Uncorked",
-    "acts": ["The Syndicate"],
-    "sources": ["https://www.facebook.com/share/p/18phNwBWKq/", "Ryan's Testimony on 2026-06-30"],
+    "acts": [
+      "The Syndicate"
+    ],
+    "sources": [
+      "https://www.facebook.com/share/p/18phNwBWKq/",
+      "Ryan's Testimony on 2026-06-30"
+    ],
     "notes": "Night of 2011-11-12. Famously a certain bass player went to the green room got into the Buffalo Trace and got too drunk to even stand in between the two sets - But despite my anxieties he knocked the syndicate gig out of the park.",
-    "description": ""
+    "description": "",
+    "confidence": "high"
   },
   {
     "title": "Live Band Night at Velocity feat. The Conglomerate",
     "date": "2012-03-21",
     "time": "8:00 PM",
     "venue": "Velocity",
-    "acts": ["The Conglomerate"],
-    "sources": ["https://www.facebook.com/share/p/1GybgBcQ1X/"],
+    "acts": [
+      "The Conglomerate"
+    ],
+    "sources": [
+      "https://www.facebook.com/share/p/1GybgBcQ1X/"
+    ],
     "notes": "",
-    "description": "Featuring our good friend Hippy Joe"
+    "description": "Featuring our good friend Hippy Joe",
+    "confidence": "high"
   },
   {
     "title": "The Conglomerate at Revolutions",
     "date": "2012-03-31",
     "time": "",
     "venue": "Revolutions",
-    "acts": ["The Conglomerate"],
-    "sources": ["https://www.facebook.com/share/p/1GybgBcQ1X/"],
+    "acts": [
+      "The Conglomerate"
+    ],
+    "sources": [
+      "https://www.facebook.com/share/p/1GybgBcQ1X/"
+    ],
     "notes": "",
-    "description": ""
+    "description": "",
+    "confidence": "high"
   },
   {
     "title": "Candy 95's Party on the Patio",
     "date": "2012-04-05",
     "time": "8:00 PM",
     "venue": "Ozona",
-    "acts": ["The Conglomerate", "Katy Dempsey"],
-    "sources": ["https://www.facebook.com/share/p/18caJUvsVy/"],
+    "acts": [
+      "The Conglomerate",
+      "Katy Dempsey"
+    ],
+    "sources": [
+      "https://www.facebook.com/share/p/18caJUvsVy/"
+    ],
     "notes": "",
-    "description": ""
+    "description": "",
+    "confidence": "high"
   },
   {
     "title": "The Conglomerate Hot & Ready!",
     "date": "2012-04-27",
     "time": "10:00 PM",
     "venue": "Church Street BBQ",
-    "acts": ["The Conglomerate", "Rob Deng"],
-    "sources": ["https://www.facebook.com/events/278299628930225"],
+    "acts": [
+      "The Conglomerate",
+      "Rob Deng"
+    ],
+    "sources": [
+      "https://www.facebook.com/events/278299628930225"
+    ],
     "notes": "",
-    "description": "The Conglomerate is gonna be getting Hot AND Ready Friday night making it's big return to the one and only Church St. Blues and BBQ! Come early and imbibe a few with the band and stay for THE FUNK!. For the first time ever, official Conglomerate 8oz mustachioed flasks will be available for sale at the show, $10!"
+    "description": "The Conglomerate is gonna be getting Hot AND Ready Friday night making it's big return to the one and only Church St. Blues and BBQ! Come early and imbibe a few with the band and stay for THE FUNK!. For the first time ever, official Conglomerate 8oz mustachioed flasks will be available for sale at the show, $10!",
+    "confidence": "high"
   },
   {
     "title": "Nikki Johnson Benefit Concert/Event",
     "date": "2012-05-01",
     "time": "",
     "venue": "Grand Stafford Theater",
-    "acts": ["The Conglomerate"],
-    "sources": ["https://www.facebook.com/share/1JXuhbNuay/"],
+    "acts": [
+      "The Conglomerate"
+    ],
+    "sources": [
+      "https://www.facebook.com/share/1JXuhbNuay/"
+    ],
     "notes": "www.SaveNikkisNoggin.com; J Vincent Scarpace's comment on the Conglomerate page on 2012-05-02",
-    "description": ""
+    "description": "",
+    "confidence": "high"
   },
   {
     "title": "The Conglomerate w/ Cube",
     "date": "2012-05-04",
     "time": "",
     "venue": "Revolutions",
-    "acts": ["The Conglomerate", "Cube"],
-    "sources": ["Mulitple testimonies on 2026-06-30"],
+    "acts": [
+      "The Conglomerate",
+      "Cube"
+    ],
+    "sources": [
+      "Mulitple testimonies on 2026-06-30"
+    ],
     "notes": "I know the drum kit fall was the May 4th gig with Cube. Year is uncertain, but it was likely Friday, May 2012.",
-    "description": ""
+    "description": "",
+    "confidence": "medium"
   },
   {
     "title": "Finals can go Funk themselves",
     "date": "2012-05-12",
     "time": "9:00 PM",
     "venue": "Grand Stafford Theater",
-    "acts": ["The Jeremiahs", "Delayed Reaction", "Chief Nation", "Hazy Ray", "Above the clouds", "The Insiders", "The Conglomerate"],
-    "sources": ["Event poster posted in Conglomochat"],
+    "acts": [
+      "The Jeremiahs",
+      "Delayed Reaction",
+      "Chief Nation",
+      "Hazy Ray",
+      "Above the clouds",
+      "The Insiders",
+      "The Conglomerate"
+    ],
+    "sources": [
+      "Event poster posted in Conglomochat"
+    ],
     "notes": "",
-    "description": ""
+    "description": "",
+    "confidence": "medium"
   },
   {
     "title": "The Conglomerate",
     "date": "2012-06-15",
     "time": "10:00 PM",
     "venue": "Church Street BBQ",
-    "acts": ["The Conglomerate"],
-    "sources": ["https://www.facebook.com/share/1HFuEdRkzD/"],
+    "acts": [
+      "The Conglomerate"
+    ],
+    "sources": [
+      "https://www.facebook.com/share/1HFuEdRkzD/"
+    ],
     "notes": "",
-    "description": "Are you stuck in College Station? Do you wish your face could be melted by sheer funk power tonight around 10? Well, you're in luck! The Conglomerate is here too, and we're playing at Church Street Blues and BBQ tonight! Come out and groove!"
+    "description": "Are you stuck in College Station? Do you wish your face could be melted by sheer funk power tonight around 10? Well, you're in luck! The Conglomerate is here too, and we're playing at Church Street Blues and BBQ tonight! Come out and groove!",
+    "confidence": "high"
   },
   {
     "title": "CSBBQ 2nd Anniversary Party",
     "date": "2012-07-03",
     "time": "9:30 PM",
     "venue": "Church Street BBQ",
-    "acts": ["The Conglomerate", "Jimmy Jones and Nick Verzosa", "Tyler Brown", "JT Coldfire"],
-    "sources": ["https://www.facebook.com/events/417241951647659"],
+    "acts": [
+      "The Conglomerate",
+      "Jimmy Jones and Nick Verzosa",
+      "Tyler Brown",
+      "JT Coldfire"
+    ],
+    "sources": [
+      "https://www.facebook.com/events/417241951647659"
+    ],
     "notes": "",
-    "description": "It's been two years already! Come dressed in your best party pants, cause this one is gonna be the biggest yet! We'll have the pit cooking overtime, the bar overstocked, and the PA cranked to 11. Open mic will start at 5 and go to 8, then we've got Jimmy Jones and Nick Verzosa on their acoustics until 9. The Conglomerate (with some special guests) will start the face melting at 9:30, followed by Tyler Brown at 11. JT Coldfire is here to round things out at 12; if you haven't seen him before, you haven't lived. We all know that you've got the 4th off, so if you love America you'll come celebrate your freedom with the best Blues, Brews and BBQ around!"
+    "description": "It's been two years already! Come dressed in your best party pants, cause this one is gonna be the biggest yet! We'll have the pit cooking overtime, the bar overstocked, and the PA cranked to 11. Open mic will start at 5 and go to 8, then we've got Jimmy Jones and Nick Verzosa on their acoustics until 9. The Conglomerate (with some special guests) will start the face melting at 9:30, followed by Tyler Brown at 11. JT Coldfire is here to round things out at 12; if you haven't seen him before, you haven't lived. We all know that you've got the 4th off, so if you love America you'll come celebrate your freedom with the best Blues, Brews and BBQ around!",
+    "confidence": "high"
   },
   {
     "title": "The Conglomerate & Hazy Ray",
     "date": "2012-07-06",
     "time": "10:30 PM",
     "venue": "Church Street BBQ",
-    "acts": ["The Conglomerate", "Hazy Ray"],
-    "sources": ["https://www.facebook.com/share/p/1FSpYEn2Hn/"],
+    "acts": [
+      "The Conglomerate",
+      "Hazy Ray"
+    ],
+    "sources": [
+      "https://www.facebook.com/share/p/1FSpYEn2Hn/"
+    ],
     "notes": "",
-    "description": "Got plans tonight? Cancel those hoes, our friends Hazy Ray are playing at Church Street Blues and BBQ at 10:30! GET THERE"
+    "description": "Got plans tonight? Cancel those hoes, our friends Hazy Ray are playing at Church Street Blues and BBQ at 10:30! GET THERE",
+    "confidence": "high"
   },
   {
     "title": "The Conglomerate at Church Street BBQ",
     "date": "2012-08-18",
     "time": "10:00 PM",
     "venue": "Church Street BBQ",
-    "acts": ["The Conglomerate", "Thomas Brandon"],
-    "sources": ["https://www.facebook.com/events/510104642338413"],
+    "acts": [
+      "The Conglomerate",
+      "Thomas Brandon"
+    ],
+    "sources": [
+      "https://www.facebook.com/events/510104642338413"
+    ],
     "description": "LAST MINUTE HEADS UP! The Conglomerate boys are back in town and we're hot n' ready to throw down at Church St. TONIGHT!",
-    "notes": "Will can out of retirement to drum this show. THere was a thunderstorm, we played anyway."
+    "notes": "Will can out of retirement to drum this show. THere was a thunderstorm, we played anyway.",
+    "confidence": "high"
   },
   {
     "title": "The Conglomerate Presents: FUNK BEACHES, GET MONEY!",
     "date": "2012-08-25",
     "time": "10:00 PM",
     "venue": "Church Street BBQ",
-    "acts": ["The Conglomerate", "Thomas Brandon"],
-    "sources": ["https://www.facebook.com/events/165007850302457"],
+    "acts": [
+      "The Conglomerate",
+      "Thomas Brandon"
+    ],
+    "sources": [
+      "https://www.facebook.com/events/165007850302457"
+    ],
     "description": "Beach season is over? So is Gig'em Week?? HELL NAH, let's kick school off on the good foot with some serious funk at Church ST. BBQ this Saturday!",
-    "notes": ""
+    "notes": "",
+    "confidence": "high"
   },
   {
     "title": "Candy 95's Party on the Patio",
     "date": "2012-08-30",
     "time": "8:00 PM",
     "venue": "Ozona",
-    "acts": ["The Conglomerate"],
-    "sources": ["https://www.facebook.com/share/1CeScRjPXr/"],
+    "acts": [
+      "The Conglomerate"
+    ],
+    "sources": [
+      "https://www.facebook.com/share/1CeScRjPXr/"
+    ],
     "notes": "",
-    "description": ""
+    "description": "",
+    "confidence": "high"
   },
   {
-    "title": "THe Conglomerate",
+    "title": "The Conglomerate",
     "date": "2012-09-09",
     "time": "",
     "venue": "Church Street BBQ",
-    "acts": ["The Conglomerate"],
-    "sources": ["Private Facebook group post on 2012-08-29"],
+    "acts": [
+      "The Conglomerate"
+    ],
+    "sources": [
+      "Private Facebook group post on 2012-08-29"
+    ],
     "notes": "",
-    "description": ""
+    "description": "",
+    "confidence": "medium"
   },
   {
     "title": "Space Capone w/ Soul Track Mind & The Conglomerate live at Grand Stafford Theater",
     "date": "2012-10-11",
     "time": "8:00 PM",
     "venue": "Grand Stafford Theater",
-    "acts": ["Soul Track Mind", "The Conglomerate"],
-    "sources": ["https://www.facebook.com/events/102471339899876"],
+    "acts": [
+      "Soul Track Mind",
+      "The Conglomerate"
+    ],
+    "sources": [
+      "https://www.facebook.com/events/102471339899876"
+    ],
     "notes": "",
-    "description": "FUNK IS IT'S OWN REWARD"
+    "description": "FUNK IS IT'S OWN REWARD",
+    "confidence": "high"
   },
   {
     "title": "Candy 95's Party on the Patio",
     "date": "2012-10-18",
     "time": "8:00 PM",
     "venue": "Ozona",
-    "acts": ["The Conglomerate"],
-    "sources": ["https://www.facebook.com/share/p/1HEiBbHwF9/"],
+    "acts": [
+      "The Conglomerate"
+    ],
+    "sources": [
+      "https://www.facebook.com/share/p/1HEiBbHwF9/"
+    ],
     "notes": "",
-    "description": ""
+    "description": "",
+    "confidence": "high"
   },
   {
     "title": "LSU @ Texas A&M - Hazy Ray & The Conglomerate in College Station",
     "date": "2012-10-20",
     "time": "10:00 PM",
     "venue": "Church Street BBQ",
-    "acts": ["Hazy Ray", "The Conglomerate"],
-    "sources": ["https://www.facebook.com/events/423111807737948"],
+    "acts": [
+      "Hazy Ray",
+      "The Conglomerate"
+    ],
+    "sources": [
+      "https://www.facebook.com/events/423111807737948"
+    ],
     "notes": "",
-    "description": "Tigers and Aggies, join us for an amazing night of entertainment after the game out at Church St. Blues and BBQ at the edge of North Gate in College Station. Church St. has the best BBQ in the city, great drink/beer specials, and is THE live music venue in College Station. Join us as Hazy Ray teams up with its favorite College Station jam band the Conglomerate!"
+    "description": "Tigers and Aggies, join us for an amazing night of entertainment after the game out at Church St. Blues and BBQ at the edge of North Gate in College Station. Church St. has the best BBQ in the city, great drink/beer specials, and is THE live music venue in College Station. Join us as Hazy Ray teams up with its favorite College Station jam band the Conglomerate!",
+    "confidence": "high"
   },
-
   {
     "title": "THE FUNK OF FORTY THOUSAND YEARS",
     "date": "2012-10-31",
     "time": "",
     "venue": "Church Street BBQ",
-    "acts": ["The Conglomerate"],
-    "sources": ["https://www.facebook.com/share/p/1RL4HbD1rp/", "Ryan's post on 2012-10-31"],
+    "acts": [
+      "The Conglomerate"
+    ],
+    "sources": [
+      "https://www.facebook.com/share/p/1RL4HbD1rp/",
+      "Ryan's post on 2012-10-31"
+    ],
     "notes": "On a Wednesday night",
-    "description": "The Conglomerate will bring THE FUNK OF FORTY THOUSAND YEARS to you tonight at Church Street Blues and BBQ! THERE WILL BE FUNK SO HARD THAT IT WAKES THE DEAD"
+    "description": "The Conglomerate will bring THE FUNK OF FORTY THOUSAND YEARS to you tonight at Church Street Blues and BBQ! THERE WILL BE FUNK SO HARD THAT IT WAKES THE DEAD",
+    "confidence": "high"
   },
   {
     "title": "A FREE CONCERT & JAM SESSION by Sisi Berry, The Conglomerate & friends at Grand Stafford Theater",
     "date": "2012-11-15",
     "time": "9:00 PM",
     "venue": "Grand Stafford Theater",
-    "acts": ["Cole Breinings Band", "The Conglomerate", "Sisi Berry", "Hunter Beauchamp", "Lunar Caustic", "Joe Teichman"],
-    "sources": ["https://www.facebook.com/events/168795153244490"],
+    "acts": [
+      "Cole Breinings Band",
+      "The Conglomerate",
+      "Sisi Berry",
+      "Hunter Beauchamp",
+      "Lunar Caustic",
+      "Joe Teichman"
+    ],
+    "sources": [
+      "https://www.facebook.com/events/168795153244490"
+    ],
     "notes": "",
-    "description": "Come out and hear from some great Bryan/College Station locals rocking out and jamming all night long from 9pm - 1am! Don't miss it, no cover, cheap drinks, great specials!"
+    "description": "Come out and hear from some great Bryan/College Station locals rocking out and jamming all night long from 9pm - 1am! Don't miss it, no cover, cheap drinks, great specials!",
+    "confidence": "high"
   },
   {
     "title": "END OF THE WORLD PARTY - FREE CONCERT!",
     "date": "2012-12-12",
     "time": "8:00 PM",
     "venue": "Grand Stafford Theater",
-    "acts": ["The Conglomerate", "Caleb Mak"],
-    "sources": ["https://www.facebook.com/events/1231376627003482"],
+    "acts": [
+      "The Conglomerate",
+      "Caleb Mak"
+    ],
+    "sources": [
+      "https://www.facebook.com/events/1231376627003482"
+    ],
     "notes": "",
-    "description": "'GREATEST PARTY TO EVER HIT AGGIELAND...EVER!' - Dr. Loftin\nFinals are over. The world is going to end. How are you going to enjoy your last few days in Aggieland?"
+    "description": "'GREATEST PARTY TO EVER HIT AGGIELAND...EVER!' - Dr. Loftin\nFinals are over. The world is going to end. How are you going to enjoy your last few days in Aggieland?",
+    "confidence": "high"
   },
   {
     "title": "End of the semester party/Jam session",
     "date": "2012-12-14",
     "time": "10:00 PM",
     "venue": "Church Street BBQ",
-    "acts": ["The Conglomerate"],
-    "sources": ["https://www.facebook.com/share/p/1CH9aSGHbG/"],
+    "acts": [
+      "The Conglomerate"
+    ],
+    "sources": [
+      "https://www.facebook.com/share/p/1CH9aSGHbG/"
+    ],
     "notes": "",
-    "description": ""
+    "description": "",
+    "confidence": "high"
   },
   {
     "title": "First Friday with Larynx Music",
     "date": "2013-02-01",
     "time": "9:00 PM",
     "venue": "Grand Stafford Theater",
-    "acts": ["Larynx Music", "The Conglomerate", "Taz & Company"],
-    "sources": ["https://www.facebook.com/share/18qpv17yPp/"],
+    "acts": [
+      "Larynx Music",
+      "The Conglomerate",
+      "Taz & Company"
+    ],
+    "sources": [
+      "https://www.facebook.com/share/18qpv17yPp/"
+    ],
     "notes": "Featured The Conglomerate & Taz & Company.",
-    "description": "First Friday in Historic Downtown Bryan, Texas is happening THIS Friday night, check out what we have in store for you all and make plans to attend a great night of local music, great jams & be sure to bring your dancing shoes for this one! Larynx Music will be headlining along with special guests The Conglomerate who will get your feet moving and hips shaking along with their funk with locals HI FI who will blend their rock & blues for you to move around. The night will get started with Taz & Company performing some great acoustic arrangements for you for FREE from 7-8pm. Doors open at 6pm, get there early & stay late! Tell a friend."
+    "description": "First Friday in Historic Downtown Bryan, Texas is happening THIS Friday night, check out what we have in store for you all and make plans to attend a great night of local music, great jams & be sure to bring your dancing shoes for this one! Larynx Music will be headlining along with special guests The Conglomerate who will get your feet moving and hips shaking along with their funk with locals HI FI who will blend their rock & blues for you to move around. The night will get started with Taz & Company performing some great acoustic arrangements for you for FREE from 7-8pm. Doors open at 6pm, get there early & stay late! Tell a friend.",
+    "confidence": "high"
   },
   {
     "title": "The Conglomerate Live @ Cedar Lane",
     "date": "2013-03-07",
     "time": "10:30 PM",
     "venue": "Cedar Lane Patio Arbor",
-    "acts": ["The Conglomerate"],
-    "sources": ["https://www.facebook.com/events/136717643166895"],
+    "acts": [
+      "The Conglomerate"
+    ],
+    "sources": [
+      "https://www.facebook.com/events/136717643166895"
+    ],
     "notes": "",
-    "description": "You do not want to miss tonight! We hear the Hullabaloo Kid himself might be making a special vocal appearance..."
+    "description": "You do not want to miss tonight! We hear the Hullabaloo Kid himself might be making a special vocal appearance...",
+    "confidence": "high"
   },
   {
     "title": "The Conglomerate",
     "date": "2013-03-23",
     "time": "",
     "venue": "Church Street BBQ",
-    "acts": ["The Conglomerate"],
-    "sources": ["Private Facebook group post on 2013-02-17"],
+    "acts": [
+      "The Conglomerate"
+    ],
+    "sources": [
+      "Private Facebook group post on 2013-02-17"
+    ],
     "notes": "",
-    "description": ""
+    "description": "",
+    "confidence": "medium"
   },
   {
     "title": "The Conglomerate",
     "date": "2013-04-11",
     "time": "",
     "venue": "Cedar Lane Patio Arbor",
-    "acts": ["The Conglomerate"],
-    "sources": ["Private Facebook group post on 2013-02-17"],
+    "acts": [
+      "The Conglomerate"
+    ],
+    "sources": [
+      "Private Facebook group post on 2013-02-17"
+    ],
     "notes": "",
-    "description": ""
+    "description": "",
+    "confidence": "medium"
   },
   {
     "title": "THE BRAIN POLICE",
     "date": "2013-04-19",
     "time": "10:00 PM",
     "venue": "Church Street BBQ",
-    "acts": ["The Brain Police"],
-    "sources": ["https://www.facebook.com/events/125987544261062"],
+    "acts": [
+      "The Brain Police"
+    ],
+    "sources": [
+      "https://www.facebook.com/events/125987544261062"
+    ],
     "notes": "Featuring members past and present of The Conglomerate, performing all of your favorite classic rock tunes from bands such as Led Zeppelin, Frank Zappa, and Queen",
-    "description": "In celebration, we have provided thee not only with a most funktastic visit from the Doctors of Funkitelicy themselves, THE CONGLOMERATE on Saturday, but also from a collection of CONGLOMERATE members who wish to provide thee with an extra good time on Friday as well. THEY SHALL BE KNOWN AS THE BRAIN POLICE."
+    "description": "In celebration, we have provided thee not only with a most funktastic visit from the Doctors of Funkitelicy themselves, THE CONGLOMERATE on Saturday, but also from a collection of CONGLOMERATE members who wish to provide thee with an extra good time on Friday as well. THEY SHALL BE KNOWN AS THE BRAIN POLICE.",
+    "confidence": "high"
   },
   {
     "title": "CONGLOMOWEEKEND EXTRAVAGANZA!!!",
     "date": "2013-04-20",
     "time": "10:00 PM",
     "venue": "Church Street BBQ",
-    "acts": ["The Conglomerate"],
-    "sources": ["https://www.facebook.com/events/125987544261062"],
+    "acts": [
+      "The Conglomerate"
+    ],
+    "sources": [
+      "https://www.facebook.com/events/125987544261062"
+    ],
     "notes": "the majestic reopening of Church Street Blues and BBQ on Northgate, our favorite venue in the entire omniverse is back in business.",
-    "description": "Indeed, also, our dear friend Alex B Long has a birthday celebration on 4/20. TO CELEBRATE, THE CONGLOMERATE HAS DECIDED TO INVADE AND VIOLATE HIS SOVEREIGNTY. NORTH CONGLOMERATE IS BEST CONGLOMERATE."
+    "description": "Indeed, also, our dear friend Alex B Long has a birthday celebration on 4/20. TO CELEBRATE, THE CONGLOMERATE HAS DECIDED TO INVADE AND VIOLATE HIS SOVEREIGNTY. NORTH CONGLOMERATE IS BEST CONGLOMERATE.",
+    "confidence": "high"
   },
   {
     "title": "The Conglomerate Presents: The CONGLOMERATION (LAST EVER CHURCH STREET SHOW)",
     "date": "2013-05-04",
     "time": "10:00 PM",
     "venue": "Church Street BBQ",
-    "acts": ["The Conglomerate"],
-    "sources": ["https://www.facebook.com/events/332863093507505"],
+    "acts": [
+      "The Conglomerate"
+    ],
+    "sources": [
+      "https://www.facebook.com/events/332863093507505"
+    ],
     "notes": "Last ever church street show.",
-    "description": "Funk upon a time, It was said that all good things must come to pass.\nIndeed, it is also said that what we do in life echoes in eternity.\nSoon, the world will know another essential life-changing truth as we discover:\nIS THERE FUNK AFTER DEATH?\nPeople of College Station, Texas, USA, North America, World, Universe, 'Murica, this is THE END.\nThe Conglomerate- your favorite band in the whole world, and the undisputed heavyweight champion of FUNK- is going to die an unfortunately sad and excruciatingly painful death at the hands of every great American college band's worst nightmare: GRADUATION. Long have we fought hard against this foe (some of us far harder than others...). But much like death and taxes, our fate, as is yours, is inevitable.\nWe members of the Conglomerate ask thee all to join us for one LAST night at Church Street Blues and BBQ, as we bring you the funk for 4 solid, sweaty, drunken hours ONE LAST TIME before the graduation reaper takes our funk away.\nWe, being the humble and gracious elected leaders of funk in this very special part of the world, also have painstakingly crafted a very special setlist in mind to ensure a good time for all of our constituents.\nTo all of our friends past and present, this will be the last opportunity to funk out with us before the professional world steals our SOUL away. We would absolutely LOVE to see you.\nSo please, Come out one and all to the last 4 hour funk marathon from your triple-board certified doctors of funkiteliky themselves, THE CONGLOMERATE!\n\n\nDisclaimer: We are THE CONGLOMERATE! We stand for nothing and break for no one."
+    "description": "Funk upon a time, It was said that all good things must come to pass.\nIndeed, it is also said that what we do in life echoes in eternity.\nSoon, the world will know another essential life-changing truth as we discover:\nIS THERE FUNK AFTER DEATH?\nPeople of College Station, Texas, USA, North America, World, Universe, 'Murica, this is THE END.\nThe Conglomerate- your favorite band in the whole world, and the undisputed heavyweight champion of FUNK- is going to die an unfortunately sad and excruciatingly painful death at the hands of every great American college band's worst nightmare: GRADUATION. Long have we fought hard against this foe (some of us far harder than others...). But much like death and taxes, our fate, as is yours, is inevitable.\nWe members of the Conglomerate ask thee all to join us for one LAST night at Church Street Blues and BBQ, as we bring you the funk for 4 solid, sweaty, drunken hours ONE LAST TIME before the graduation reaper takes our funk away.\nWe, being the humble and gracious elected leaders of funk in this very special part of the world, also have painstakingly crafted a very special setlist in mind to ensure a good time for all of our constituents.\nTo all of our friends past and present, this will be the last opportunity to funk out with us before the professional world steals our SOUL away. We would absolutely LOVE to see you.\nSo please, Come out one and all to the last 4 hour funk marathon from your triple-board certified doctors of funkiteliky themselves, THE CONGLOMERATE!\n\n\nDisclaimer: We are THE CONGLOMERATE! We stand for nothing and break for no one.",
+    "confidence": "high"
   },
   {
     "title": "End of School Bash",
     "date": "2013-05-08",
     "time": "7:00 PM",
     "venue": "Grand Stafford Theater",
-    "acts": ["Madison Rising", "Hazy Ray", "The Conglomerate", "Larynx"],
-    "sources": ["https://www.facebook.com/events/155727904595537"],
+    "acts": [
+      "Madison Rising",
+      "Hazy Ray",
+      "The Conglomerate",
+      "Larynx"
+    ],
+    "sources": [
+      "https://www.facebook.com/events/155727904595537"
+    ],
     "notes": "",
-    "description": ""
+    "description": "",
+    "confidence": "high"
   },
   {
     "title": "The Conglomerate FUNK AFTER DEATH Reunion Show",
     "date": "2015-05-01",
     "time": "8:30 PM",
     "venue": "Grand Stafford Theater",
-    "acts": ["The Conglomerate", "Hazy Ray"],
-    "sources": ["https://www.facebook.com/events/887559401265430", "Will's Calendar"],
+    "acts": [
+      "The Conglomerate",
+      "Hazy Ray"
+    ],
+    "sources": [
+      "https://www.facebook.com/events/887559401265430",
+      "Will's Calendar"
+    ],
     "notes": "Big Jazz Boy Convention album release announced. Video footage by Bebop Media Group released on 2015-10-25",
-    "description": ""
+    "description": "",
+    "confidence": "high"
   },
   {
     "title": "Mardis Gras with The Conglomerate & Hazy Ray",
     "date": "2016-02-06",
     "time": "",
     "venue": "New Orleans, LA",
-    "acts": ["Hazy Ray", "The Conglomerate"],
-    "sources": ["Nick's on 2026-02-04: 10 years since the last public performance of the Conglomerate. Mardi Gras 2016"],
+    "acts": [
+      "Hazy Ray",
+      "The Conglomerate"
+    ],
+    "sources": [
+      "Nick's on 2026-02-04: 10 years since the last public performance of the Conglomerate. Mardi Gras 2016"
+    ],
     "notes": "Last public performance of the Conglomerate.",
-    "description": ""
+    "description": "",
+    "confidence": "medium"
   },
   {
     "title": "Weswick's Wedding",
     "date": "2016-06-25",
     "time": "",
     "venue": "",
-    "acts": ["The Conglomerate"],
-    "sources": ["Nick's post in Conglomerate private group on 2016-06-19"],
+    "acts": [
+      "The Conglomerate"
+    ],
+    "sources": [
+      "Nick's post in Conglomerate private group on 2016-06-19"
+    ],
     "notes": "",
-    "description": ""
+    "description": "",
+    "confidence": "medium"
   }
 ]
