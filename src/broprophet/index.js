@@ -10,6 +10,8 @@
 //   POST /post-now    — post a daily saying immediately
 //   POST /check-mentions — poll mentions immediately
 
+import livePerformances from "../../live-performances.json";
+
 import { chat } from "./openai.js";
 import { checkVoice, newSayingMessages, replyMessages } from "./prompts.js";
 import { pickForcedToken, randomQuote } from "./corpus.js";
@@ -537,6 +539,10 @@ export default {
         last_mention_id: lastMention,
         last_daily_post_date: lastDaily,
       });
+    }
+
+    if (path === "/live-performances") {
+      return jsonResponse(livePerformances);
     }
 
     if (path === "/preview") {
